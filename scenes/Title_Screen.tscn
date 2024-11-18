@@ -41,12 +41,14 @@ vertical_alignment = 1
 [node name="Start_Game" type="Button" parent="MarginContainer/Menu_Options"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Quit_Game")
 theme = ExtResource("2_h303t")
 text = "Start Game"
 
 [node name="Quit_Game" type="Button" parent="MarginContainer/Menu_Options"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../Start_Game")
 theme = ExtResource("2_h303t")
 text = "Quit Game"
 
