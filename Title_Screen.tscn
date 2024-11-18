@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://drxbcmmtsbo1i"]
+[gd_scene load_steps=4 format=3 uid="uid://drxbcmmtsbo1i"]
 
 [ext_resource type="Script" path="res://title_screen.gd" id="1_eqsmv"]
+[ext_resource type="Theme" uid="uid://bsw0hesjvm384" path="res://fonts/Main_Theme.tres" id="2_gamqn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtkgu"]
+bg_color = Color(0.729412, 0.333333, 0.827451, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_eqsmv")
+
+[node name="Background" type="Panel" parent="."]
+offset_right = 1605.0
+offset_bottom = 899.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jtkgu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -22,6 +31,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/Menu_Options"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("2_gamqn")
 text = "Metroidvania"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -29,9 +39,11 @@ vertical_alignment = 1
 [node name="Start_Game" type="Button" parent="MarginContainer/Menu_Options"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("2_gamqn")
 text = "Start Game"
 
 [node name="Quit_Game" type="Button" parent="MarginContainer/Menu_Options"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("2_gamqn")
 text = "Quit Game"

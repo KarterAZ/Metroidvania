@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bsw0hesjvm384"]
+
+[ext_resource type="FontFile" uid="uid://2qltsm5txud6" path="res://fonts/Wet Pet.otf" id="1_42ygp"]
+
+[resource]
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_42ygp")
+Label/colors/font_color = Color(0, 0.501961, 0.501961, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_42ygp")
