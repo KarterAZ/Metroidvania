@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://drxbcmmtsbo1i"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_eqsmv"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_eqsmv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1605.0
+offset_bottom = 898.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu_Options" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/Menu_Options"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Metroidvania"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start_Game" type="Button" parent="MarginContainer/Menu_Options"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Start Game"
+
+[node name="Quit_Game" type="Button" parent="MarginContainer/Menu_Options"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit Game"
