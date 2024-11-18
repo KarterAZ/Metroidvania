@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Metroidvania"
-run/main_scene="res://Title_Screen.tscn"
+run/main_scene="res://scenes/Title_Screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
@@ -24,6 +28,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Metroidvania"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg")
 
 [input]
 
