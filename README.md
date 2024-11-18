@@ -1,6 +1,6 @@
 # Metroidvania
 
-This is a metoridvania game project developed by Karter (Zwetschke?) and Andrew Rice for a [game jam](https://itch.io/jam/metroidvania-month-26).
+This is a metoridvania game project developed by Karter Zwetschke and Andrew Rice for a [game jam](https://itch.io/jam/metroidvania-month-26).
 
 ## Resources
 
