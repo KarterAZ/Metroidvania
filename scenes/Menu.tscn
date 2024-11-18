@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds6c10ynxp2u"]
+
+[ext_resource type="Theme" uid="uid://bsw0hesjvm384" path="res://fonts/Main_Theme.tres" id="1_yf0xo"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Menu_Background" type="PanelContainer" parent="."]
+offset_right = 1599.0
+offset_bottom = 903.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu_Background"]
+layout_mode = 2
+
+[node name="Exit_Game" type="Button" parent="Menu_Background/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_yf0xo")
+text = "Exit Game"
