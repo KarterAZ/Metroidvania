@@ -4,28 +4,21 @@
 [ext_resource type="Theme" uid="uid://bsw0hesjvm384" path="res://fonts/Main_Theme.tres" id="2_h303t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtkgu"]
-bg_color = Color(0.729412, 0.333333, 0.827451, 1)
+bg_color = Color(0.946724, 0.936996, 0.925812, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_84pdq")
 
 [node name="Background" type="Panel" parent="."]
-offset_right = 1602.0
-offset_bottom = 898.0
+offset_right = 1600.0
+offset_bottom = 900.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jtkgu")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1602.0
-offset_bottom = 898.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1600.0
+offset_bottom = 900.0
 
 [node name="Menu_Options" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -42,15 +35,21 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Quit_Game")
+focus_neighbor_bottom = NodePath("../Quit_Game")
 theme = ExtResource("2_h303t")
 text = "Start Game"
 
 [node name="Quit_Game" type="Button" parent="MarginContainer/Menu_Options"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Start_Game")
 focus_neighbor_bottom = NodePath("../Start_Game")
 theme = ExtResource("2_h303t")
 text = "Quit Game"
 
+[connection signal="mouse_entered" from="MarginContainer/Menu_Options/Start_Game" to="." method="_on_start_game_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/Menu_Options/Start_Game" to="." method="_on_start_game_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/Menu_Options/Start_Game" to="." method="_on_start_game_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/Menu_Options/Quit_Game" to="." method="_on_quit_game_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/Menu_Options/Quit_Game" to="." method="_on_quit_game_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/Menu_Options/Quit_Game" to="." method="_on_quit_game_pressed"]

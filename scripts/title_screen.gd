@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var start = $MarginContainer/Menu_Options/Start_Game
+@onready var end = $MarginContainer/Menu_Options/Quit_Game
 var starting_room = "res://scenes/Starting_Room.tscn"
 
 # Called when the node enters the scene tree for the first time.
@@ -12,3 +13,21 @@ func _on_start_game_pressed() -> void:
 	
 func _on_quit_game_pressed() -> void:
 	get_tree().quit()
+
+func _on_start_game_mouse_entered() -> void:
+	start.grab_focus()
+
+func _on_start_game_mouse_exited() -> void:
+	start.release_focus()
+
+func _on_quit_game_mouse_entered() -> void:
+	end.grab_focus()
+
+func _on_quit_game_mouse_exited() -> void:
+	end.release_focus()
+
+func _input(input:InputEvent) -> void:
+	print("Just pressed: ", input.as_text())
+	if input.as_text() == "Up" or input.as_text() == "Down" or input.as_text() == "Enter":
+		if not start.has_focus() and not end.has_focus():
+			start.grab_focus()
