@@ -24,44 +24,44 @@ texture = ExtResource("1_324wl")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Head" type="Polygon2D" parent="Node2D"]
-position = Vector2(-478, -977)
+position = Vector2(-479, -976)
 texture = ExtResource("2_spseg")
 skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(577.616, 33.8259, 346.708, 56.2805, 403.219, 196.247, 562.633, 260.979, 743.392, 228.42, 527.982, 136.221)
-uv = PackedVector2Array(577.616, 33.8259, 346.708, 56.2805, 403.219, 196.247, 562.633, 260.979, 743.392, 228.42, 527.982, 136.221)
-polygons = [PackedInt32Array(0, 5, 1), PackedInt32Array(5, 0, 4), PackedInt32Array(5, 3, 4), PackedInt32Array(5, 2, 3), PackedInt32Array(5, 2, 1)]
-bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5), "Torso/ArmFront", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/ArmFront/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/ArmBack", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/ArmBack/ForearmB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
+polygon = PackedVector2Array(342.454, 57.4355, 583.045, 32.5296, 739.953, 223.807, 583.543, 271.128, 414.183, 205.377, 532.237, 137.134)
+uv = PackedVector2Array(342.454, 57.4355, 583.045, 32.5296, 739.953, 223.807, 583.543, 271.128, 414.183, 205.377, 532.237, 137.134)
+polygons = [PackedInt32Array(0, 5, 1), PackedInt32Array(0, 4, 5), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(5, 1, 2)]
+bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(1, 1, 1, 1, 1, 1), "Torso/FrontShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/BackShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
 internal_vertex_count = 1
 
 [node name="ArmBack" type="Polygon2D" parent="Node2D"]
-position = Vector2(-351, -971)
+position = Vector2(-294, -966)
 texture = ExtResource("3_d3sts")
 skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(370.677, 314.786, 338.299, 399.466, 323.356, 481.655, 340.79, 549.898, 391.1, 631.589, 429.953, 647.529, 468.308, 631.589, 451.372, 581.777, 413.515, 483.648, 477.274, 378.047, 385.556, 413.27, 387.82, 557.724)
-uv = PackedVector2Array(370.677, 314.786, 338.299, 399.466, 323.356, 481.655, 340.79, 549.898, 391.1, 631.589, 429.953, 647.529, 468.308, 631.589, 451.372, 581.777, 413.515, 483.648, 477.274, 378.047, 385.556, 413.27, 387.82, 557.724)
-polygons = [PackedInt32Array(0, 10, 9), PackedInt32Array(0, 1, 10), PackedInt32Array(10, 9, 8), PackedInt32Array(10, 1, 2), PackedInt32Array(2, 8, 10), PackedInt32Array(2, 3, 11), PackedInt32Array(2, 11, 8), PackedInt32Array(8, 11, 7), PackedInt32Array(11, 3, 4), PackedInt32Array(11, 5, 4), PackedInt32Array(11, 7, 6), PackedInt32Array(11, 5, 6)]
-bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmBack", PackedFloat32Array(0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0), "Torso/ArmBack/ForearmB", PackedFloat32Array(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0.5), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-internal_vertex_count = 2
+polygon = PackedVector2Array(361.539, 326.826, 431.126, 333.949, 467.837, 377.784, 443.728, 441.344, 414.14, 476.411, 419.619, 529.56, 432.77, 576.134, 469.481, 605.722, 451.399, 644.078, 390.031, 643.53, 375.237, 605.174, 346.197, 555.313, 320.992, 487.37, 335.786, 407.372, 391.675, 413.399, 369.758, 509.287, 419.619, 605.722)
+uv = PackedVector2Array(361.539, 326.826, 431.126, 333.949, 467.837, 377.784, 443.728, 441.344, 414.14, 476.411, 419.619, 529.56, 432.77, 576.134, 469.481, 605.722, 451.399, 644.078, 390.031, 643.53, 375.237, 605.174, 346.197, 555.313, 320.992, 487.37, 335.786, 407.372, 391.675, 413.399, 369.758, 509.287, 419.619, 605.722)
+polygons = [PackedInt32Array(14, 13, 0), PackedInt32Array(14, 1, 0), PackedInt32Array(14, 2, 1), PackedInt32Array(14, 3, 2), PackedInt32Array(14, 4, 3), PackedInt32Array(14, 12, 13), PackedInt32Array(14, 4, 12), PackedInt32Array(15, 12, 4), PackedInt32Array(15, 5, 4), PackedInt32Array(15, 11, 12), PackedInt32Array(15, 10, 11), PackedInt32Array(15, 6, 5), PackedInt32Array(15, 10, 6), PackedInt32Array(16, 6, 10), PackedInt32Array(16, 9, 10), PackedInt32Array(16, 9, 8), PackedInt32Array(16, 8, 7), PackedInt32Array(16, 6, 7)]
+bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB", PackedFloat32Array(0.37, 0.37, 0.37, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0), "Torso/BackShoulder/BicepB/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0.37, 1, 1, 1, 1, 1, 1, 1, 0.37, 0, 0, 1, 1), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 3
 
 [node name="LegBack" type="Polygon2D" parent="Node2D"]
 position = Vector2(-478, -977)
 texture = ExtResource("4_kvyxh")
 skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(416.778, 502.41, 623.734, 534.595, 565.391, 770.04, 521.556, 905.935, 616.896, 948.674, 601.006, 980.454, 512.789, 983.193, 390.601, 978.81, 407.587, 934.975, 418.545, 901.004, 437.723, 760.186, 383.475, 563.357, 499.661, 628.234, 481.76, 831.11, 499.661, 945.808)
-uv = PackedVector2Array(416.778, 502.41, 623.734, 534.595, 565.391, 770.04, 521.556, 905.935, 616.896, 948.674, 601.006, 980.454, 512.789, 983.193, 390.601, 978.81, 407.587, 934.975, 418.545, 901.004, 437.723, 760.186, 383.475, 563.357, 499.661, 628.234, 481.76, 831.11, 499.661, 945.808)
-polygons = [PackedInt32Array(0, 12, 1), PackedInt32Array(0, 11, 12), PackedInt32Array(12, 1, 2), PackedInt32Array(11, 12, 10), PackedInt32Array(12, 10, 2), PackedInt32Array(10, 13, 2), PackedInt32Array(10, 9, 13), PackedInt32Array(13, 2, 3), PackedInt32Array(13, 9, 3), PackedInt32Array(9, 14, 3), PackedInt32Array(9, 8, 14), PackedInt32Array(8, 7, 14), PackedInt32Array(7, 6, 14), PackedInt32Array(6, 5, 14), PackedInt32Array(14, 3, 4), PackedInt32Array(14, 5, 4)]
-bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmBack", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmBack/ForearmB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack", PackedFloat32Array(0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0, 0), "Torso/LowerTorso/LegBack/ShinB", PackedFloat32Array(0, 0, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5, 0.5, 0, 0, 0.5, 0), "Torso/LowerTorso/LegBack/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5)]
-internal_vertex_count = 3
+polygon = PackedVector2Array(414.475, 500.822, 509.267, 528.218, 620.497, 530.41, 584.881, 663.557, 568.991, 764.924, 529.54, 856.44, 519.678, 909.041, 604.059, 941.917, 601.319, 979.176, 498.856, 984.107, 393.106, 978.08, 404.065, 935.89, 417.215, 899.726, 421.598, 830.139, 437.489, 757.803, 388.724, 633.423, 505.427, 578.628, 502.687, 696.981, 478.575, 833.43, 493.917, 941.92)
+uv = PackedVector2Array(414.475, 500.822, 509.267, 528.218, 620.497, 530.41, 584.881, 663.557, 568.991, 764.924, 529.54, 856.44, 519.678, 909.041, 604.059, 941.917, 601.319, 979.176, 498.856, 984.107, 393.106, 978.08, 404.065, 935.89, 417.215, 899.726, 421.598, 830.139, 437.489, 757.803, 388.724, 633.423, 505.427, 578.628, 502.687, 696.981, 478.575, 833.43, 493.917, 941.92)
+polygons = [PackedInt32Array(16, 0, 1), PackedInt32Array(16, 2, 1), PackedInt32Array(16, 3, 2), PackedInt32Array(16, 15, 0), PackedInt32Array(15, 3, 16), PackedInt32Array(15, 17, 3), PackedInt32Array(15, 14, 17), PackedInt32Array(3, 17, 4), PackedInt32Array(17, 14, 4), PackedInt32Array(14, 13, 18), PackedInt32Array(14, 4, 18), PackedInt32Array(18, 5, 4), PackedInt32Array(18, 12, 13), PackedInt32Array(18, 6, 5), PackedInt32Array(18, 12, 6), PackedInt32Array(19, 12, 6), PackedInt32Array(19, 7, 6), PackedInt32Array(19, 9, 8), PackedInt32Array(19, 8, 7), PackedInt32Array(19, 10, 9), PackedInt32Array(19, 11, 10), PackedInt32Array(19, 12, 11)]
+bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip", PackedFloat32Array(1, 1, 1, 0.56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.56, 1, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB", PackedFloat32Array(0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0.56, 1, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB", PackedFloat32Array(0, 0, 0, 0, 0.59, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0.59, 0, 0, 0, 1, 0), "Torso/LowerTorso/BackHip/LegB/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0.59, 1, 1, 1, 1, 1, 0.59, 0, 0, 0, 0, 0, 0, 1)]
+internal_vertex_count = 4
 
 [node name="LegFront" type="Polygon2D" parent="Node2D"]
 position = Vector2(-478, -977)
 texture = ExtResource("4_kvyxh")
 skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(416.778, 502.41, 623.734, 534.595, 565.391, 770.04, 521.556, 905.935, 616.896, 948.674, 601.006, 980.454, 512.789, 983.193, 390.601, 978.81, 407.587, 934.975, 418.545, 901.004, 437.723, 760.186, 383.475, 563.357, 499.661, 628.234, 481.76, 831.11, 499.661, 945.808)
-uv = PackedVector2Array(416.778, 502.41, 623.734, 534.595, 565.391, 770.04, 521.556, 905.935, 616.896, 948.674, 601.006, 980.454, 512.789, 983.193, 390.601, 978.81, 407.587, 934.975, 418.545, 901.004, 437.723, 760.186, 383.475, 563.357, 499.661, 628.234, 481.76, 831.11, 499.661, 945.808)
-polygons = [PackedInt32Array(0, 12, 1), PackedInt32Array(0, 11, 12), PackedInt32Array(12, 1, 2), PackedInt32Array(11, 12, 10), PackedInt32Array(12, 10, 2), PackedInt32Array(10, 13, 2), PackedInt32Array(10, 9, 13), PackedInt32Array(13, 2, 3), PackedInt32Array(13, 9, 3), PackedInt32Array(9, 14, 3), PackedInt32Array(9, 8, 14), PackedInt32Array(8, 7, 14), PackedInt32Array(7, 6, 14), PackedInt32Array(6, 5, 14), PackedInt32Array(14, 3, 4), PackedInt32Array(14, 5, 4)]
-bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmBack", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmBack/ForearmB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront", PackedFloat32Array(0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0, 0), "Torso/LowerTorso/LegFront/ShinF", PackedFloat32Array(0, 0, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5, 0.5, 0, 0, 0.5, 0), "Torso/LowerTorso/LegFront/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5), "Torso/LowerTorso/LegBack", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-internal_vertex_count = 3
+polygon = PackedVector2Array(414.475, 500.822, 509.267, 528.218, 620.497, 530.41, 584.881, 663.557, 568.991, 764.924, 529.54, 856.44, 519.678, 909.041, 604.059, 941.917, 601.319, 979.176, 498.856, 984.107, 393.106, 978.08, 404.065, 935.89, 417.215, 899.726, 421.598, 830.139, 437.489, 757.803, 388.724, 633.423, 505.427, 578.628, 502.687, 696.981, 478.575, 833.43, 493.917, 941.92)
+uv = PackedVector2Array(414.475, 500.822, 509.267, 528.218, 620.497, 530.41, 584.881, 663.557, 568.991, 764.924, 529.54, 856.44, 519.678, 909.041, 604.059, 941.917, 601.319, 979.176, 498.856, 984.107, 393.106, 978.08, 404.065, 935.89, 417.215, 899.726, 421.598, 830.139, 437.489, 757.803, 388.724, 633.423, 505.427, 578.628, 502.687, 696.981, 478.575, 833.43, 493.917, 941.92)
+polygons = [PackedInt32Array(16, 0, 1), PackedInt32Array(16, 2, 1), PackedInt32Array(16, 3, 2), PackedInt32Array(16, 15, 0), PackedInt32Array(15, 3, 16), PackedInt32Array(15, 17, 3), PackedInt32Array(15, 14, 17), PackedInt32Array(3, 17, 4), PackedInt32Array(17, 14, 4), PackedInt32Array(14, 13, 18), PackedInt32Array(14, 4, 18), PackedInt32Array(18, 5, 4), PackedInt32Array(18, 12, 13), PackedInt32Array(18, 6, 5), PackedInt32Array(18, 12, 6), PackedInt32Array(19, 12, 6), PackedInt32Array(19, 7, 6), PackedInt32Array(19, 9, 8), PackedInt32Array(19, 8, 7), PackedInt32Array(19, 10, 9), PackedInt32Array(19, 11, 10), PackedInt32Array(19, 12, 11)]
+bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip", PackedFloat32Array(1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF", PackedFloat32Array(0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0.5, 1, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF", PackedFloat32Array(0, 0, 0, 0, 0.49, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0.49, 0, 0, 0, 1, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0.49, 1, 1, 1, 1, 1, 0.49, 0, 0, 0, 0, 0, 0, 1), "Torso/LowerTorso/BackHip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 4
 
 [node name="Body" type="Polygon2D" parent="Node2D"]
 position = Vector2(-478, -977)
@@ -77,74 +77,104 @@ internal_vertex_count = 2
 position = Vector2(-478, -977)
 texture = ExtResource("3_d3sts")
 skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(370.677, 314.786, 338.299, 399.466, 323.356, 481.655, 340.79, 549.898, 391.1, 631.589, 429.953, 647.529, 468.308, 631.589, 451.372, 581.777, 413.515, 483.648, 477.274, 378.047, 385.556, 413.27, 387.82, 557.724)
-uv = PackedVector2Array(370.677, 314.786, 338.299, 399.466, 323.356, 481.655, 340.79, 549.898, 391.1, 631.589, 429.953, 647.529, 468.308, 631.589, 451.372, 581.777, 413.515, 483.648, 477.274, 378.047, 385.556, 413.27, 387.82, 557.724)
-polygons = [PackedInt32Array(0, 10, 9), PackedInt32Array(0, 1, 10), PackedInt32Array(10, 9, 8), PackedInt32Array(10, 1, 2), PackedInt32Array(2, 8, 10), PackedInt32Array(2, 3, 11), PackedInt32Array(2, 11, 8), PackedInt32Array(8, 11, 7), PackedInt32Array(11, 3, 4), PackedInt32Array(11, 5, 4), PackedInt32Array(11, 7, 6), PackedInt32Array(11, 5, 6)]
-bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmFront", PackedFloat32Array(0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0), "Torso/ArmFront/ForearmF", PackedFloat32Array(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, 0.5), "Torso/ArmBack", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/ArmBack/ForearmB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegFront/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/LegBack/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
-internal_vertex_count = 2
+polygon = PackedVector2Array(361.539, 326.826, 431.126, 333.949, 467.837, 377.784, 443.728, 441.344, 414.14, 476.411, 419.619, 529.56, 432.77, 576.134, 469.481, 605.722, 451.399, 644.078, 390.031, 643.53, 375.237, 605.174, 346.197, 555.313, 320.992, 487.37, 335.786, 407.372, 391.675, 413.399, 369.758, 509.287, 419.619, 605.722)
+uv = PackedVector2Array(361.539, 326.826, 431.126, 333.949, 467.837, 377.784, 443.728, 441.344, 414.14, 476.411, 419.619, 529.56, 432.77, 576.134, 469.481, 605.722, 451.399, 644.078, 390.031, 643.53, 375.237, 605.174, 346.197, 555.313, 320.992, 487.37, 335.786, 407.372, 391.675, 413.399, 369.758, 509.287, 419.619, 605.722)
+polygons = [PackedInt32Array(14, 13, 0), PackedInt32Array(14, 1, 0), PackedInt32Array(14, 2, 1), PackedInt32Array(14, 3, 2), PackedInt32Array(14, 4, 3), PackedInt32Array(14, 12, 13), PackedInt32Array(14, 4, 12), PackedInt32Array(15, 12, 4), PackedInt32Array(15, 5, 4), PackedInt32Array(15, 11, 12), PackedInt32Array(15, 10, 11), PackedInt32Array(15, 6, 5), PackedInt32Array(15, 10, 6), PackedInt32Array(16, 6, 10), PackedInt32Array(16, 9, 10), PackedInt32Array(16, 9, 8), PackedInt32Array(16, 8, 7), PackedInt32Array(16, 6, 7)]
+bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/FrontShoulder/BicepF", PackedFloat32Array(0.27, 0.27, 0.27, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0), "Torso/FrontShoulder/BicepF/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0.27, 1, 1, 1, 1, 1, 1, 1, 0.27, 0, 0, 1, 1), "Torso/BackShoulder", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/BackShoulder/BicepB/ForearmF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/FrontHip/LegF/ShinF/FootF", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Torso/LowerTorso/BackHip/LegB/ShinB/FootB", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 3
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 
 [node name="Torso" type="Bone2D" parent="Skeleton2D"]
-position = Vector2(37, -644)
-rotation = -1.5708
-rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 37, -644)
+position = Vector2(28, -654)
+rotation = -1.56086
+rest = Transform2D(0.00993684, -0.999951, 0.999951, 0.00993684, 28, -654)
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Torso"]
-position = Vector2(146, 9.00001)
-rest = Transform2D(1, 0, 0, 1, 146, 9.00001)
+position = Vector2(142.142, 13.5882)
+rotation = 0.342092
+rest = Transform2D(0.94455, 0.328368, -0.328368, 0.94455, 146, 9.00001)
 
-[node name="ArmFront" type="Bone2D" parent="Skeleton2D/Torso"]
-position = Vector2(-100, -130)
-rotation = -2.75991
+[node name="FrontShoulder" type="Bone2D" parent="Skeleton2D/Torso"]
+position = Vector2(-1.54652, -54.9873)
+rotation = -1.66111
+rest = Transform2D(-0.0901959, -0.995924, 0.995924, -0.0901959, -1.54652, -54.9873)
+
+[node name="BicepF" type="Bone2D" parent="Skeleton2D/Torso/FrontShoulder"]
+position = Vector2(49.5451, -42.1579)
+rotation = -1.23861
+rest = Transform2D(0.326112, -0.945331, 0.945331, 0.326112, 49.5451, -42.1579)
+
+[node name="ForearmF" type="Bone2D" parent="Skeleton2D/Torso/FrontShoulder/BicepF"]
+position = Vector2(111.406, 11.609)
+rotation = -0.555154
 scale = Vector2(1, 1)
-rest = Transform2D(-0.92804, -0.372479, 0.372479, -0.92804, -100, -130)
+rest = Transform2D(0.849819, -0.527074, 0.527074, 0.849819, 111.406, 11.609)
 
-[node name="ForearmF" type="Bone2D" parent="Skeleton2D/Torso/ArmFront"]
-position = Vector2(117.495, -42.8478)
-rotation = -0.780716
-rest = Transform2D(0.71041, -0.703788, 0.703788, 0.71041, 117.495, -42.8478)
+[node name="BackShoulder" type="Bone2D" parent="Skeleton2D/Torso"]
+position = Vector2(13.367, 36.869)
+rotation = 2.35501
+rest = Transform2D(-0.446209, 0.894929, -0.894929, -0.446209, -10.4331, 57.1065)
 
-[node name="ArmBack" type="Bone2D" parent="Skeleton2D/Torso"]
-position = Vector2(-105, -7)
-rotation = -2.75991
+[node name="BicepB" type="Bone2D" parent="Skeleton2D/Torso/BackShoulder"]
+position = Vector2(55.1273, 13.3783)
+rotation = 2.02449
+rest = Transform2D(-0.438287, 0.898835, -0.898835, -0.438287, 55.1273, 13.3783)
+
+[node name="ForearmF" type="Bone2D" parent="Skeleton2D/Torso/BackShoulder/BicepB"]
+position = Vector2(105.273, -63.4798)
+rotation = -2.35312
 scale = Vector2(1, 1)
-rest = Transform2D(-0.92804, -0.372479, 0.372479, -0.92804, -105, -7)
-
-[node name="ForearmB" type="Bone2D" parent="Skeleton2D/Torso/ArmBack"]
-position = Vector2(115.26, -48.416)
-rotation = -0.312234
-rest = Transform2D(0.95165, -0.307186, 0.307186, 0.95165, 115.26, -48.416)
+rest = Transform2D(0.450447, -0.892803, 0.892803, 0.450447, 105.273, -63.4798)
 
 [node name="LowerTorso" type="Bone2D" parent="Skeleton2D/Torso"]
-position = Vector2(-148, 41)
-rest = Transform2D(1, 0, 0, 1, -148, 41)
+position = Vector2(-148.003, 0.470695)
+rest = Transform2D(1, 0, 0, 1, -148.003, 0.470695)
 
-[node name="LegFront" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
-position = Vector2(-181, -54)
-rest = Transform2D(1, 0, 0, 1, -181, -54)
+[node name="FrontHip" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
+position = Vector2(-77.2645, -26.2335)
+rotation = -0.0236048
+scale = Vector2(1, 1)
+rest = Transform2D(0.999721, -0.0236027, 0.0236027, 0.999721, -77.2645, -26.2335)
 
-[node name="ShinF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/LegFront"]
-position = Vector2(-184, -24)
-rest = Transform2D(1, 0, 0, 1, -184, -24)
+[node name="LegF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip"]
+position = Vector2(-41.7501, -18.5723)
+rotation = 0.185879
+rest = Transform2D(0.994624, -0.103549, 0.103549, 0.994624, -41.7501, -18.5723)
 
-[node name="FootF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/LegFront/ShinF"]
-position = Vector2(-98, 3)
-rotation = 1.73347
-rest = Transform2D(-0.161959, 0.986798, -0.986798, -0.161959, -98, 3)
+[node name="ShinF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip/LegF"]
+position = Vector2(-194.946, -11.9166)
+rotation = 0.101039
+rest = Transform2D(0.940563, 0.339618, -0.339618, 0.940563, -194.946, -11.9166)
 
-[node name="LegBack" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
-position = Vector2(-183, -44)
-rest = Transform2D(1, 0, 0, 1, -183, -44)
+[node name="FootF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip/LegF/ShinF"]
+position = Vector2(-153.186, 7.99904)
+rotation = -0.255429
+scale = Vector2(1, 1)
+rest = Transform2D(0.982117, -0.188274, 0.188274, 0.982117, -153.186, 7.99904)
 
-[node name="ShinB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/LegBack"]
-position = Vector2(-184, -24)
-rest = Transform2D(1, 0, 0, 1, -184, -24)
+[node name="BackHip" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
+position = Vector2(-75.718, 28.7538)
+rotation = -0.0236048
+scale = Vector2(1, 1)
+rest = Transform2D(0.999721, -0.0236027, 0.0236027, 0.999721, -75.718, 28.7538)
 
-[node name="FootB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/LegBack/ShinB"]
-position = Vector2(-98, 3)
-rotation = 0.155493
-rest = Transform2D(0.987935, 0.154867, -0.154867, 0.987935, -98, 3)
+[node name="LegB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip"]
+position = Vector2(-29.0771, 78.6099)
+rotation = -0.0794487
+rest = Transform2D(0.994624, -0.103549, 0.103549, 0.994624, -41.7501, -18.5723)
+
+[node name="ShinB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip/LegB"]
+position = Vector2(-191.789, -21.6135)
+rotation = 0.296726
+scale = Vector2(1, 1)
+rest = Transform2D(0.940563, 0.339618, -0.339618, 0.940563, -191.789, -21.6135)
+
+[node name="FootB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip/LegB/ShinB"]
+position = Vector2(-153.186, 7.99904)
+rotation = 1.79453
+scale = Vector2(1, 1)
+rest = Transform2D(-0.221871, 0.975076, -0.975076, -0.221871, -153.186, 7.99904)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
