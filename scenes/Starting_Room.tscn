@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dvcjbamaps72t" path="res://icon.svg" id="1_us8f1"]
 [ext_resource type="PackedScene" uid="uid://bv3smcvbfcn30" path="res://scenes/Pause_Menu.tscn" id="2_0n1ya"]
-[ext_resource type="PackedScene" uid="uid://bgodkvjslkx54" path="res://scenes/Player.tscn" id="3_hax55"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="3_hax55"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r2qun"]
 
