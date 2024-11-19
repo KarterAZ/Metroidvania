@@ -217,5 +217,5 @@ tile_set = SubResource("TileSet_c4us0")
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("2_0n1ya")]
 
-[node name="Smaurai" parent="." instance=ExtResource("3_hax55")]
+[node name="Player" parent="." instance=ExtResource("3_hax55")]
 position = Vector2(-273, 372)
