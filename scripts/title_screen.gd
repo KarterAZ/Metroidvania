@@ -27,7 +27,6 @@ func _on_quit_game_mouse_exited() -> void:
 	end.release_focus()
 
 func _input(input:InputEvent) -> void:
-	print("Just pressed: ", input.as_text())
 	if input.as_text() == "Up" or input.as_text() == "Down" or input.as_text() == "Enter":
 		if not start.has_focus() and not end.has_focus():
 			start.grab_focus()

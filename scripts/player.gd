@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var sprite = $Player_Sprite
 
 var cur_jumps = 0
+var last_direction = 0
 
 func _physics_process(delta):
 	if !is_on_floor():
@@ -34,11 +35,12 @@ func _physics_process(delta):
 			velocity.y = -jump_force
 	
 	var horizontal_direction = Input.get_axis("Left", "Right")
-	if horizontal_direction != 0:
+	if horizontal_direction != last_direction:
 		speed += 25
 		sprite.flip_h = (horizontal_direction == 1)
 	else:
 		speed = min_speed
+		last_direction = horizontal_direction
 	velocity.x = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
 	
 	move_and_slide()
