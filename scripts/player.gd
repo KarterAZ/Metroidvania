@@ -10,16 +10,27 @@ extends CharacterBody2D
 @export var min_gravity = 50
 @export var max_gravity = 1000
 
+@export var num_jumps = 2
+
 @onready var sprite = $Player_Sprite
+
+var cur_jumps = 0
 
 func _physics_process(delta):
 	if !is_on_floor():
-		velocity.y = velocity.y + gravity if gravity < max_gravity else max_gravity
-		gravity += 5
+		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps:
+			cur_jumps += 1
+			velocity.y = -jump_force
+			gravity = min_gravity
+		else:
+			velocity.y = velocity.y + gravity if gravity < max_gravity else max_gravity
+			gravity += 5
 		
 	else:
+		cur_jumps = 0
 		gravity = min_gravity
 		if Input.is_action_just_pressed("Jump"):
+			cur_jumps += 1
 			velocity.y = -jump_force
 	
 	var horizontal_direction = Input.get_axis("Left", "Right")
