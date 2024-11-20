@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://blbfn7a66l1ih"]
+[gd_scene load_steps=13 format=3 uid="uid://du116u42p16b"]
 
 [ext_resource type="Texture2D" uid="uid://b7y6f0xl526vy" path="res://character/char_ref.png" id="1_324wl"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
 [ext_resource type="Texture2D" uid="uid://dd73q34d0ly5l" path="res://character/char_head.png" id="2_spseg"]
 [ext_resource type="Texture2D" uid="uid://ix3yjpgqj188" path="res://character/char_arm.png" id="3_d3sts"]
 [ext_resource type="Texture2D" uid="uid://cqg7a2rpn8qii" path="res://character/char_leg.png" id="4_kvyxh"]
 [ext_resource type="Texture2D" uid="uid://df4wmkfthlatp" path="res://character/char_body.png" id="5_4sqku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp50v"]
+size = Vector2(345, 892)
 
 [sub_resource type="Animation" id="Animation_6mxf5"]
 resource_name = "Idle"
@@ -1298,7 +1302,12 @@ _data = {
 "Run": SubResource("Animation_qmjy3")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqqao"]
+size = Vector2(328, 8)
+
 [node name="Character" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_q2b7k")
 
 [node name="CharRef" type="Sprite2D" parent="."]
 visible = false
@@ -1306,6 +1315,7 @@ position = Vector2(22, -477)
 texture = ExtResource("1_324wl")
 
 [node name="Node2D" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Head" type="Polygon2D" parent="Node2D"]
 position = Vector2(-479, -976)
@@ -1368,6 +1378,7 @@ bones = ["Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 internal_vertex_count = 3
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Torso" type="Bone2D" parent="Skeleton2D"]
 position = Vector2(28, -654)
@@ -1392,12 +1403,12 @@ rest = Transform2D(0.326112, -0.945331, 0.945331, 0.326112, 49.5451, -42.1579)
 [node name="ForearmF" type="Bone2D" parent="Skeleton2D/Torso/FrontShoulder/BicepF"]
 position = Vector2(111.406, 11.609)
 rotation = -0.555154
-scale = Vector2(1, 1)
 rest = Transform2D(0.849819, -0.527074, 0.527074, 0.849819, 111.406, 11.609)
 
 [node name="BackShoulder" type="Bone2D" parent="Skeleton2D/Torso"]
 position = Vector2(13.367, 36.869)
 rotation = 2.35501
+scale = Vector2(1, 1)
 rest = Transform2D(-0.446209, 0.894929, -0.894929, -0.446209, -10.4331, 57.1065)
 
 [node name="BicepB" type="Bone2D" parent="Skeleton2D/Torso/BackShoulder"]
@@ -1408,7 +1419,6 @@ rest = Transform2D(-0.438287, 0.898835, -0.898835, -0.438287, 55.1273, 13.3783)
 [node name="ForearmF" type="Bone2D" parent="Skeleton2D/Torso/BackShoulder/BicepB"]
 position = Vector2(105.273, -63.4798)
 rotation = -2.35312
-scale = Vector2(1, 1)
 rest = Transform2D(0.450447, -0.892803, 0.892803, 0.450447, 105.273, -63.4798)
 
 [node name="LowerTorso" type="Bone2D" parent="Skeleton2D/Torso"]
@@ -1418,35 +1428,35 @@ rest = Transform2D(1, 0, 0, 1, -148.003, 0.470695)
 [node name="FrontHip" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
 position = Vector2(-77.2645, -26.2335)
 rotation = -0.0236048
-scale = Vector2(1, 1)
+scale = Vector2(0.999987, 0.999987)
 rest = Transform2D(0.999721, -0.0236027, 0.0236027, 0.999721, -77.2645, -26.2335)
 
 [node name="LegF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip"]
 position = Vector2(-41.7501, -18.5723)
 rotation = 0.185879
-scale = Vector2(1, 1)
 rest = Transform2D(0.994624, -0.103549, 0.103549, 0.994624, -41.7501, -18.5723)
 
 [node name="ShinF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip/LegF"]
 position = Vector2(-194.946, -11.9166)
 rotation = 0.101039
+scale = Vector2(1, 1)
 rest = Transform2D(0.940563, 0.339618, -0.339618, 0.940563, -194.946, -11.9166)
 
 [node name="FootF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip/LegF/ShinF"]
 position = Vector2(-153.186, 7.99904)
 rotation = -0.255429
+scale = Vector2(1, 1)
 rest = Transform2D(0.982117, -0.188274, 0.188274, 0.982117, -153.186, 7.99904)
 
 [node name="BackHip" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
 position = Vector2(-75.718, 28.7538)
 rotation = -0.0236048
-scale = Vector2(1, 1)
+scale = Vector2(0.999987, 0.999987)
 rest = Transform2D(0.999721, -0.0236027, 0.0236027, 0.999721, -75.718, 28.7538)
 
 [node name="LegB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip"]
 position = Vector2(-29.0771, 78.6099)
 rotation = -0.0794487
-scale = Vector2(1, 1)
 rest = Transform2D(0.994624, -0.103549, 0.103549, 0.994624, -41.7501, -18.5723)
 
 [node name="ShinB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip/LegB"]
@@ -1457,10 +1467,27 @@ rest = Transform2D(0.940563, 0.339618, -0.339618, 0.940563, -191.789, -21.6135)
 [node name="FootB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip/LegB/ShinB"]
 position = Vector2(-153.186, 7.99904)
 rotation = 1.79453
-scale = Vector2(1, 1)
 rest = Transform2D(-0.221871, 0.975076, -0.975076, -0.221871, -153.186, 7.99904)
 
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(35.5, -452)
+shape = SubResource("RectangleShape2D_qp50v")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_cqm73")
 }
+
+[node name="Player_Cam" type="Camera2D" parent="."]
+unique_name_in_owner = true
+ignore_rotation = false
+
+[node name="On_Floor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="On_Floor"]
+position = Vector2(36, 0)
+shape = SubResource("RectangleShape2D_lqqao")
+
+[connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
+[connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]
