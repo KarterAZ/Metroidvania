@@ -21,6 +21,7 @@ size = Vector2(84, 127)
 script = ExtResource("1_h52nk")
 
 [node name="Player_Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(598, 328)
 scale = Vector2(0.59375, 1)
 sprite_frames = SubResource("SpriteFrames_tu4as")

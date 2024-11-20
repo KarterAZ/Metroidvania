@@ -1,18 +1,18 @@
 extends CharacterBody2D
 
-@export var jump_force = 1500
-@export var speed = 50
-@export var gravity = 50
-
-@export var min_speed = 50
-@export var max_speed = 1000
+@export var min_speed = 100
+@export var max_speed = 300
 
 @export var min_gravity = 50
-@export var max_gravity = 1000
+@export var max_gravity = 150
 
 @export var num_jumps = 2
+@export var jump_force = 1500
 
-@onready var sprite = $Player_Sprite
+var speed = min_speed
+var gravity = max_speed
+
+@onready var sprite = %Player_Sprite
 
 var cur_jumps = 0
 var last_direction = 0

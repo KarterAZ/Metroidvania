@@ -11,8 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(input:InputEvent) -> void:
-	if Input.is_action_just_pressed("Menu"):
-		print("Menu opened")
-		
+	if Input.is_action_just_pressed("Menu"): 
 		#Toggle paused game and open menu
+		get_tree().paused = not get_tree().paused
 		get_tree().current_scene.add_child(menu)
