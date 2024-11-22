@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 const Global = preload("res://scripts/global.gd")
-const CHARGE_STAB = preload("res://scenes/Charge_Stab.tscn")
 
 @export var min_speed:int = 100
 @export var max_speed:int = 500
@@ -63,10 +62,6 @@ func get_grav_velocity_y() -> float:
 		return velocity.x * -1
 	else:
 		return 0
-
-func _process(delta):
-	if Input.is_action_just_pressed("Ink"):
-		add_child(CHARGE_STAB.instantiate())
 
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("Left", "Right")

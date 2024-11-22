@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d30hcfqyk80x1" path="res://charge stab/attack_3.png" id="4_re4m3"]
 [ext_resource type="Texture2D" uid="uid://bdv40oa7hkfbn" path="res://charge stab/attack_4.png" id="5_iv1cx"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne4ol"]
+radius = 16.9557
+height = 838.02
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2nhq8"]
 animations = [{
 "frames": [{
@@ -26,14 +30,21 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne4ol"]
-radius = 16.9557
-height = 838.02
-
-[node name="ChargeStab" type="Area2D"]
-position = Vector2(1500, -450)
-scale = Vector2(3, 3)
+[node name="Charge_Stab" type="StaticBody2D"]
+position = Vector2(475, -100)
 script = ExtResource("1_tja4u")
+
+[node name="Walk_Box" type="CollisionShape2D" parent="."]
+position = Vector2(3, 2)
+rotation = 1.57952
+shape = SubResource("CapsuleShape2D_ne4ol")
+
+[node name="Hit_Box" type="Area2D" parent="."]
+
+[node name="Hit_Collision" type="CollisionShape2D" parent="Hit_Box"]
+position = Vector2(3, 2)
+rotation = 1.57952
+shape = SubResource("CapsuleShape2D_ne4ol")
 
 [node name="Paint" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -42,23 +53,9 @@ animation = &"attack"
 frame = 3
 frame_progress = 1.0
 
-[node name="Walk_Box" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(3, 2)
-rotation = 1.57952
-shape = SubResource("CapsuleShape2D_ne4ol")
-
-[node name="Hit_Box" type="Area2D" parent="."]
-visible = false
-
-[node name="Hit_Collision" type="CollisionShape2D" parent="Hit_Box"]
-position = Vector2(3, 2)
-rotation = 1.57952
-shape = SubResource("CapsuleShape2D_ne4ol")
-
 [node name="Lifetime" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
 autostart = true
 
-[connection signal="timeout" from="Lifetime" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

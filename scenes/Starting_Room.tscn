@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://dy56wc14c34ll"]
+[gd_scene load_steps=8 format=4 uid="uid://dy56wc14c34ll"]
 
+[ext_resource type="Script" path="res://scenes/room.gd" id="1_0ntwq"]
 [ext_resource type="Texture2D" uid="uid://dvcjbamaps72t" path="res://icon.svg" id="1_us8f1"]
 [ext_resource type="PackedScene" uid="uid://bv3smcvbfcn30" path="res://scenes/Pause_Menu.tscn" id="2_0n1ya"]
 [ext_resource type="PackedScene" uid="uid://du116u42p16b" path="res://scenes/Character.tscn" id="2_w8a45"]
@@ -207,6 +208,7 @@ metadata/_better_terrain = {
 }
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_0ntwq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
@@ -214,7 +216,8 @@ tile_map_data = PackedByteArray("AAAEAAMAAAAAAAAAAAAEAAQAAAAAAAcAAAAFAAQAAAAHAAc
 tile_set = SubResource("TileSet_c4us0")
 
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
-position = Vector2(374, 700)
+unique_name_in_owner = true
+position = Vector2(354, 764)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
