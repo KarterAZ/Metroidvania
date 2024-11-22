@@ -214,7 +214,7 @@ tile_map_data = PackedByteArray("AAAEAAMAAAAAAAAAAAAEAAQAAAAAAAcAAAAFAAQAAAAHAAc
 tile_set = SubResource("TileSet_c4us0")
 
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
-position = Vector2(379, 777)
+position = Vector2(374, 700)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
