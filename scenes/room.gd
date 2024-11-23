@@ -7,6 +7,7 @@ const CHARGE_STAB = preload("res://scenes/Charge_Stab.tscn")
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Ink"):
 		var ink = CHARGE_STAB.instantiate()
-		ink.position.x += character.position.x
-		ink.position.y += character.position.y
+		ink.position.x = character.position.x
+		ink.position.y = character.position.y
+		ink.rotation = character.rotation
 		add_child(ink)
