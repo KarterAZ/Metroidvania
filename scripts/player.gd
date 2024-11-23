@@ -17,12 +17,13 @@ var speed:int = min_speed
 var gravity:int = max_speed
 var cur_jumps:int = 0
 var grav_direction:int = Global.down
-var on_ground:bool = true
+var on_ground:bool = false
 
 @onready var sprite: Node2D = %Node2D
 @onready var anims: AnimationPlayer = %AnimationPlayer
 @onready var cam: Camera2D = %Player_Cam
 @onready var floor: Area2D = $On_Floor
+@onready var hitbox: CollisionShape2D = $Hitbox
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -72,18 +73,16 @@ func _physics_process(delta):
 		gravity = min_gravity
 		if Input.is_action_just_pressed("Grav_Left"):
 			grav_direction = Global.left_dir(grav_direction)
-			cam.rotate(PI * .5)
-			sprite.rotate(PI * .5)
+			self.rotate(PI * .5)
 		elif Input.is_action_just_pressed("Grav_Right"):
 			grav_direction = Global.right_dir(grav_direction)
-			cam.rotate(PI * -.5)
-			sprite.rotate(PI * -.5)
+			self.rotate(PI * -.5)
 		elif Input.is_action_just_pressed("Jump"):
 			cur_jumps += 1
 			velocityy = -jump_force
 	else:
 		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps:
-			cur_jumps += 1
+			cur_jumps += 2
 			velocityy = -jump_force
 			gravity = min_gravity
 		else:
@@ -111,7 +110,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_on_floor_body_entered(body: Node2D) -> void:
-	on_ground = true
+	if body != self:
+		on_ground = true
 
 func _on_on_floor_body_exited(body: Node2D) -> void:
 	on_ground = false

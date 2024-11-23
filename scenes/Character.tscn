@@ -1428,7 +1428,7 @@ rest = Transform2D(1, 0, 0, 1, -148.003, 0.470695)
 [node name="FrontHip" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
 position = Vector2(-77.2645, -26.2335)
 rotation = -0.0236048
-scale = Vector2(0.999987, 0.999987)
+scale = Vector2(0.999982, 0.999982)
 rest = Transform2D(0.999721, -0.0236027, 0.0236027, 0.999721, -77.2645, -26.2335)
 
 [node name="LegF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip"]
@@ -1439,19 +1439,17 @@ rest = Transform2D(0.994624, -0.103549, 0.103549, 0.994624, -41.7501, -18.5723)
 [node name="ShinF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip/LegF"]
 position = Vector2(-194.946, -11.9166)
 rotation = 0.101039
-scale = Vector2(1, 1)
 rest = Transform2D(0.940563, 0.339618, -0.339618, 0.940563, -194.946, -11.9166)
 
 [node name="FootF" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/FrontHip/LegF/ShinF"]
 position = Vector2(-153.186, 7.99904)
 rotation = -0.255429
-scale = Vector2(1, 1)
 rest = Transform2D(0.982117, -0.188274, 0.188274, 0.982117, -153.186, 7.99904)
 
 [node name="BackHip" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso"]
 position = Vector2(-75.718, 28.7538)
 rotation = -0.0236048
-scale = Vector2(0.999987, 0.999987)
+scale = Vector2(0.999982, 0.999982)
 rest = Transform2D(0.999721, -0.0236027, 0.0236027, 0.999721, -75.718, 28.7538)
 
 [node name="LegB" type="Bone2D" parent="Skeleton2D/Torso/LowerTorso/BackHip"]
@@ -1486,7 +1484,7 @@ ignore_rotation = false
 [node name="On_Floor" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="On_Floor"]
-position = Vector2(36, 0)
+position = Vector2(36, -4)
 shape = SubResource("RectangleShape2D_lqqao")
 
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]

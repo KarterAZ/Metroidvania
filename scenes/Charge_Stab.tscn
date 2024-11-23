@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://k51xwtx2tvay"]
+
+[ext_resource type="Script" path="res://scripts/charge_stab.gd" id="1_tja4u"]
+[ext_resource type="Texture2D" uid="uid://cf7jh0lasej28" path="res://charge stab/attack_1.png" id="2_h0f76"]
+[ext_resource type="Texture2D" uid="uid://djlgemuj40oa1" path="res://charge stab/attack_2.png" id="3_1f72n"]
+[ext_resource type="Texture2D" uid="uid://d30hcfqyk80x1" path="res://charge stab/attack_3.png" id="4_re4m3"]
+[ext_resource type="Texture2D" uid="uid://bdv40oa7hkfbn" path="res://charge stab/attack_4.png" id="5_iv1cx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ne4ol"]
+radius = 16.9557
+height = 838.02
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2nhq8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h0f76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1f72n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_re4m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iv1cx")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}]
+
+[node name="Charge_Stab" type="StaticBody2D"]
+position = Vector2(475, -100)
+script = ExtResource("1_tja4u")
+
+[node name="Walk_Box" type="CollisionShape2D" parent="."]
+position = Vector2(3, 2)
+rotation = 1.57952
+shape = SubResource("CapsuleShape2D_ne4ol")
+
+[node name="Hit_Box" type="Area2D" parent="."]
+
+[node name="Hit_Collision" type="CollisionShape2D" parent="Hit_Box"]
+position = Vector2(3, 2)
+rotation = 1.57952
+shape = SubResource("CapsuleShape2D_ne4ol")
+
+[node name="Paint" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_2nhq8")
+animation = &"attack"
+frame = 3
+frame_progress = 1.0
+
+[node name="Lifetime" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
