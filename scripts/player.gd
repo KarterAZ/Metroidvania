@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 const Global = preload("res://scripts/global.gd")
 
-@export var min_speed: int = 100
-@export var max_speed: int = 500
+@export var min_speed: int = 200
+@export var max_speed: int = 600
 @export var speed_per_second: int = 800
 
 @export var min_gravity: int = 100
@@ -23,6 +23,7 @@ var on_ground: bool = false
 var go_left: int = 0
 var go_right: int = 0
 var grav_increment: float = (PI * .5) / grav_frames
+var can_act = true
 
 @onready var sprite: Node2D = %Node2D
 @onready var anims: AnimationPlayer = %AnimationPlayer
@@ -74,6 +75,7 @@ func _process(_delta):
 		if go_left == 0:
 			get_tree().paused = false
 			self.set_process_mode(Node.PROCESS_MODE_INHERIT)
+			can_act = true
 			
 	elif go_right > 0:
 		self.rotate(grav_increment * -1)
@@ -81,61 +83,65 @@ func _process(_delta):
 		if go_right == 0:
 			get_tree().paused = false
 			self.set_process_mode(Node.PROCESS_MODE_INHERIT)
+			can_act = true
 	
 	if on_ground:
-		if Input.is_action_just_pressed("Grav_Left"):
+		if Input.is_action_just_pressed("Grav_Left") and can_act:
 			grav_direction = Global.left_dir(grav_direction)
 			go_left = grav_frames - 1
 			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 			get_tree().paused = true
+			can_act = false
 			self.rotate(grav_increment)
 			
-		elif Input.is_action_just_pressed("Grav_Right"):
+		elif Input.is_action_just_pressed("Grav_Right") and can_act:
 			grav_direction = Global.right_dir(grav_direction)
 			go_right = grav_frames - 1
 			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 			get_tree().paused = true
+			can_act = false
 			self.rotate(grav_increment * -1)
 
 func _physics_process(delta):
-	var horizontal_direction = Input.get_axis("Left", "Right")
-	var velocityx = get_grav_velocity_x()
-	var velocityy = get_grav_velocity_y()
-	
-	if on_ground:
-		cur_jumps = 0
-		gravity = min_gravity
-		if Input.is_action_just_pressed("Jump"):
-			cur_jumps += 1
-			velocityy = -jump_force
-	else:
-		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps:
-			cur_jumps += 2
-			velocityy = -jump_force
+	if can_act:
+		var horizontal_direction = Input.get_axis("Left", "Right")
+		var velocityx = get_grav_velocity_x()
+		var velocityy = get_grav_velocity_y()
+		
+		if on_ground:
+			cur_jumps = 0
 			gravity = min_gravity
+			if Input.is_action_just_pressed("Jump"):
+				cur_jumps += 1
+				velocityy = -jump_force
 		else:
-			gravity += gravity_per_second * delta
-			velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
-	
-	#Set speed
-	speed += speed_per_second * delta
-	
-	#Set animations
-	if horizontal_direction == 0:
-		anims.play("Idle")
-	elif horizontal_direction != 0:
-		anims.play("Run")
-			
-	#If changed directions
-	if (horizontal_direction < 0 and sprite.scale.x > 0) or (horizontal_direction >= 0 and sprite.scale.x < 0):
-		speed = min_speed
-		sprite.scale.x *= -1
-	
-	velocityx = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
-	
-	set_grav_velocity(velocityx, velocityy)
-	
-	move_and_slide()
+			if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps:
+				cur_jumps += 2
+				velocityy = -jump_force
+				gravity = min_gravity
+			else:
+				gravity += gravity_per_second * delta
+				velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
+		
+		#Set speed
+		speed += speed_per_second * delta
+		
+		#Set animations
+		if horizontal_direction == 0:
+			anims.play("Idle")
+		elif horizontal_direction != 0:
+			anims.play("Run")
+				
+		#If changed directions
+		if (horizontal_direction < 0 and sprite.scale.x > 0) or (horizontal_direction >= 0 and sprite.scale.x < 0):
+			speed = min_speed
+			sprite.scale.x *= -1
+		
+		velocityx = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
+		
+		set_grav_velocity(velocityx, velocityy)
+		
+		move_and_slide()
 
 func _on_on_floor_body_entered(body: Node2D) -> void:
 	if body != self:

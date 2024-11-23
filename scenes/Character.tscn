@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cqg7a2rpn8qii" path="res://character/char_leg.png" id="4_kvyxh"]
 [ext_resource type="Texture2D" uid="uid://df4wmkfthlatp" path="res://character/char_body.png" id="5_4sqku"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp50v"]
-size = Vector2(345, 892)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1avx"]
+radius = 180.5
+height = 888.0
 
 [sub_resource type="Animation" id="Animation_6mxf5"]
 resource_name = "Idle"
@@ -1303,7 +1304,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqqao"]
-size = Vector2(340, 8)
+size = Vector2(352, 176)
 
 [node name="Character" type="CharacterBody2D"]
 position = Vector2(-10, 115)
@@ -1470,7 +1471,7 @@ rest = Transform2D(-0.221871, 0.975076, -0.975076, -0.221871, -153.186, 7.99904)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(35.5, -452)
-shape = SubResource("RectangleShape2D_qp50v")
+shape = SubResource("CapsuleShape2D_m1avx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -1480,13 +1481,33 @@ libraries = {
 
 [node name="Player_Cam" type="Camera2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -750)
 ignore_rotation = false
+
+[node name="HUD" type="VBoxContainer" parent="Player_Cam"]
+offset_left = -3116.0
+offset_top = -1722.0
+offset_right = -1980.0
+offset_bottom = -1502.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Health" type="ProgressBar" parent="Player_Cam/HUD"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Ink" type="ProgressBar" parent="Player_Cam/HUD"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="On_Floor" type="Area2D" parent="."]
 position = Vector2(-8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="On_Floor"]
-position = Vector2(42, -4)
+position = Vector2(44, -88)
 shape = SubResource("RectangleShape2D_lqqao")
 
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
