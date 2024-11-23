@@ -2,22 +2,27 @@ extends CharacterBody2D
 
 const Global = preload("res://scripts/global.gd")
 
-@export var min_speed:int = 100
-@export var max_speed:int = 500
-@export var speed_per_second:int = 800
+@export var min_speed: int = 100
+@export var max_speed: int = 500
+@export var speed_per_second: int = 800
 
-@export var min_gravity:int = 100
-@export var max_gravity:int = 900
-@export var gravity_per_second:int = 200
+@export var min_gravity: int = 100
+@export var max_gravity: int = 900
+@export var gravity_per_second: int = 200
 
-@export var num_jumps:int = 2
-@export var jump_force:int = 1500
+@export var num_jumps: int = 2
+@export var jump_force: int = 1500
 
-var speed:int = min_speed
-var gravity:int = max_speed
-var cur_jumps:int = 0
-var grav_direction:int = Global.down
-var on_ground:bool = false
+@export var grav_frames: int = 5
+
+var speed: int = min_speed
+var gravity: int = max_speed
+var cur_jumps: int = 0
+var grav_direction: int = Global.down
+var on_ground: bool = false
+var go_left: int = 0
+var go_right: int = 0
+var grav_increment: float = (PI * .5) / grav_frames
 
 @onready var sprite: Node2D = %Node2D
 @onready var anims: AnimationPlayer = %AnimationPlayer
@@ -61,6 +66,36 @@ func get_grav_velocity_y() -> float:
 		return velocity.x * -1
 	else:
 		return 0
+		
+func _process(_delta):
+	if go_left > 0:
+		self.rotate(grav_increment)
+		go_left -= 1
+		if go_left == 0:
+			get_tree().paused = false
+			self.set_process_mode(Node.PROCESS_MODE_INHERIT)
+			
+	elif go_right > 0:
+		self.rotate(grav_increment * -1)
+		go_right -= 1
+		if go_right == 0:
+			get_tree().paused = false
+			self.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	
+	if on_ground:
+		if Input.is_action_just_pressed("Grav_Left"):
+			grav_direction = Global.left_dir(grav_direction)
+			go_left = grav_frames - 1
+			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+			get_tree().paused = true
+			self.rotate(grav_increment)
+			
+		elif Input.is_action_just_pressed("Grav_Right"):
+			grav_direction = Global.right_dir(grav_direction)
+			go_right = grav_frames - 1
+			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+			get_tree().paused = true
+			self.rotate(grav_increment * -1)
 
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("Left", "Right")
@@ -70,13 +105,7 @@ func _physics_process(delta):
 	if on_ground:
 		cur_jumps = 0
 		gravity = min_gravity
-		if Input.is_action_just_pressed("Grav_Left"):
-			grav_direction = Global.left_dir(grav_direction)
-			self.rotate(PI * .5)
-		elif Input.is_action_just_pressed("Grav_Right"):
-			grav_direction = Global.right_dir(grav_direction)
-			self.rotate(PI * -.5)
-		elif Input.is_action_just_pressed("Jump"):
+		if Input.is_action_just_pressed("Jump"):
 			cur_jumps += 1
 			velocityy = -jump_force
 	else:
