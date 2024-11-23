@@ -22,7 +22,6 @@ var on_ground:bool = false
 @onready var sprite: Node2D = %Node2D
 @onready var anims: AnimationPlayer = %AnimationPlayer
 @onready var cam: Camera2D = %Player_Cam
-@onready var floor: Area2D = $On_Floor
 @onready var hitbox: CollisionShape2D = $Hitbox
 
 func set_grav_velocity(x, y) -> void:
@@ -113,5 +112,5 @@ func _on_on_floor_body_entered(body: Node2D) -> void:
 	if body != self:
 		on_ground = true
 
-func _on_on_floor_body_exited(body: Node2D) -> void:
+func _on_on_floor_body_exited(_body: Node2D) -> void:
 	on_ground = false
