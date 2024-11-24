@@ -128,7 +128,6 @@ func _process(_delta):
 			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 			get_tree().paused = true
 			can_act = false
-			print(grav_increment)
 			self.rotate(grav_increment)
 			
 		elif Input.is_action_just_pressed("Grav_Right") and can_act:
