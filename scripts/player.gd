@@ -204,12 +204,10 @@ func _physics_process(delta):
 		speed += speed_per_second * delta
 		
 		#Set animations
-		print(sam.assigned_animation)
 		if horizontal_direction == 0:
-			if sam.assigned_animation != "Idle":
-				hide_sprites()
-				idle.visible = true
-				sam.play("Idle")
+			hide_sprites()
+			idle.visible = true
+			sam.play("Idle")
 		elif horizontal_direction != 0:
 			hide_sprites()
 			run.visible = true
