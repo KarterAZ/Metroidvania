@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=3 uid="uid://bhxh3eucn3m8k"]
+
+[ext_resource type="Texture2D" uid="uid://bmma7gnh1e1eb" path="res://cloak sam/cloak idle/cloak_idle.png" id="1_3njjf"]
+[ext_resource type="Texture2D" uid="uid://bcomorcr7hhql" path="res://cloak sam/cloak atk 1/cloak_atk_2_5.png" id="1_d44xu"]
+[ext_resource type="Texture2D" uid="uid://x1j1camw0wbn" path="res://cloak sam/cloak idle/cloak_idle_2.png" id="2_2v7gd"]
+[ext_resource type="Texture2D" uid="uid://b6irnudoh3biq" path="res://cloak sam/cloak atk 1/cloak_atk_3.png" id="2_37dq8"]
+[ext_resource type="Texture2D" uid="uid://bkw081qt4iib7" path="res://cloak sam/cloak run/cloak_run_1.png" id="2_m8i1q"]
+[ext_resource type="Texture2D" uid="uid://3yvduts2x57j" path="res://cloak sam/cloak run/cloak_run_2.png" id="3_1k05d"]
+[ext_resource type="Texture2D" uid="uid://d1k56kxyk44pc" path="res://cloak sam/cloak atk 1/cloak_atk_4.png" id="3_m2jhf"]
+[ext_resource type="Texture2D" uid="uid://bkk5sq2c8wigk" path="res://cloak sam/cloak run/cloak_run_3.png" id="4_38obt"]
+[ext_resource type="Texture2D" uid="uid://dlhcgn5vee88e" path="res://cloak sam/cloak atk 2/atk_1.png" id="4_brmd4"]
+[ext_resource type="Texture2D" uid="uid://7gcwndlnv3q1" path="res://cloak sam/cloak run/cloak_run_4.png" id="5_3kf5b"]
+[ext_resource type="Texture2D" uid="uid://bh5djj4p33ept" path="res://cloak sam/cloak atk 2/atk_2.png" id="5_43e4j"]
+[ext_resource type="Texture2D" uid="uid://i4ljorgydrib" path="res://cloak sam/cloak run/cloak_run_5.png" id="6_fa674"]
+[ext_resource type="Texture2D" uid="uid://dvfexwaopp0rs" path="res://cloak sam/cloak atk 2/atk_3.png" id="6_syxjm"]
+[ext_resource type="Texture2D" uid="uid://oks4svnmulf" path="res://cloak sam/cloak run/cloak_run_6.png" id="7_yockj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3btq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d44xu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_37dq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m2jhf")
+}],
+"loop": true,
+"name": &"atk 1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_brmd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_43e4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_syxjm")
+}],
+"loop": true,
+"name": &"atk 2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3njjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2v7gd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m8i1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1k05d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_38obt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3kf5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fa674")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yockj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="CloakMan" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w3btq")
+animation = &"atk 2"
+frame_progress = 0.28706
