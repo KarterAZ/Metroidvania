@@ -40,8 +40,6 @@ var restore_health: bool = false
 @onready var run: Sprite2D = %Run
 @onready var sword: Sprite2D = %Sword
 
-#@onready var sprite: Node2D = %Node2D
-#@onready var anims: AnimationPlayer = %AnimationPlayer
 @onready var cam: Camera2D = %Player_Cam
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var health: ProgressBar = $Player_Cam/HUD/Health

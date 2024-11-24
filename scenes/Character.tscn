@@ -199,6 +199,7 @@ offset_right = -7624.0
 offset_bottom = -5850.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
+theme_override_constants/separation = 20
 metadata/_edit_use_anchors_ = true
 
 [node name="Health" type="ProgressBar" parent="Player_Cam/HUD"]
