@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhxh3eucn3m8k"]
+[gd_scene load_steps=17 format=3 uid="uid://bhxh3eucn3m8k"]
 
 [ext_resource type="Texture2D" uid="uid://bmma7gnh1e1eb" path="res://cloak sam/cloak idle/cloak_idle.png" id="1_3njjf"]
 [ext_resource type="Texture2D" uid="uid://bcomorcr7hhql" path="res://cloak sam/cloak atk 1/cloak_atk_2_5.png" id="1_d44xu"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://i4ljorgydrib" path="res://cloak sam/cloak run/cloak_run_5.png" id="6_fa674"]
 [ext_resource type="Texture2D" uid="uid://dvfexwaopp0rs" path="res://cloak sam/cloak atk 2/atk_3.png" id="6_syxjm"]
 [ext_resource type="Texture2D" uid="uid://oks4svnmulf" path="res://cloak sam/cloak run/cloak_run_6.png" id="7_yockj"]
+[ext_resource type="Texture2D" uid="uid://cup3t33bfnstv" path="res://cloak sam/cloak atk 2/jump.png" id="9_k45ag"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w3btq"]
 animations = [{
@@ -58,6 +59,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_k45ag")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_m8i1q")
 }, {
 "duration": 1.0,
@@ -84,5 +93,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3btq")
-animation = &"atk 2"
-frame_progress = 0.28706
+animation = &"jump"
+frame_progress = 0.256861
