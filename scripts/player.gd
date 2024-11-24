@@ -17,7 +17,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var charge_stab_cost: int = 10
 @export var grav_cost: int = 0
-@export var water_cost: int = 10
+@export var water_cost: int = 5
 
 @export var ink_restore_amount: int = 15
 @export var health_restore_amount: int = 15
@@ -34,8 +34,14 @@ var can_act: bool = true
 var restore_ink: bool = false
 var restore_health: bool = false
 
-@onready var sprite: Node2D = %Node2D
-@onready var anims: AnimationPlayer = %AnimationPlayer
+@onready var sprites: Node2D = %Animation_Handler
+@onready var sam: AnimationPlayer = %Sam
+@onready var idle: Sprite2D = %Idle
+@onready var run: Sprite2D = %Run
+@onready var sword: Sprite2D = %Sword
+
+#@onready var sprite: Node2D = %Node2D
+#@onready var anims: AnimationPlayer = %AnimationPlayer
 @onready var cam: Camera2D = %Player_Cam
 @onready var hitbox: CollisionShape2D = $Hitbox
 @onready var health: ProgressBar = $Player_Cam/HUD/Health
@@ -103,7 +109,12 @@ func get_grav_velocity_y() -> float:
 	else:
 		return 0
 		
-func _process(_delta):
+func hide_sprites() -> void:
+	idle.visible = false
+	run.visible = false
+	sword.visible = false
+	
+func _physics_process(delta):
 	#Gravity stuff
 	if go_left > 0:
 		self.rotate(grav_increment)
@@ -144,6 +155,19 @@ func _process(_delta):
 			ink.value -= charge_stab_cost
 			charge_stab.emit()
 			
+	#Water stuff
+	if Input.is_action_just_pressed("Water"):
+		if ink.value >= water_cost:
+			ink.value -= water_cost
+			water.emit()
+			
+	#Attack stuff
+	if Input.is_action_just_pressed("Attack"):
+		hide_sprites()
+		sword.visible = true
+		sam.play("Sword")
+		can_act = false
+			
 	#Inkwell restore stuff
 	if restore_ink:
 		ink.value += ink_restore_amount
@@ -154,8 +178,8 @@ func _process(_delta):
 		health.value += health_restore_amount
 		if health.value >= health.max_value:
 			restore_health = false
-
-func _physics_process(delta):
+			
+	#Physics stuff
 	if can_act:
 		var horizontal_direction = Input.get_axis("Left", "Right")
 		var velocityx = get_grav_velocity_x()
@@ -180,15 +204,21 @@ func _physics_process(delta):
 		speed += speed_per_second * delta
 		
 		#Set animations
+		print(sam.assigned_animation)
 		if horizontal_direction == 0:
-			anims.play("Idle")
+			if sam.assigned_animation != "Idle":
+				hide_sprites()
+				idle.visible = true
+				sam.play("Idle")
 		elif horizontal_direction != 0:
-			anims.play("Run")
+			hide_sprites()
+			run.visible = true
+			sam.play("Run")
 				
 		#If changed directions
-		if (horizontal_direction < 0 and sprite.scale.x > 0) or (horizontal_direction > 0 and sprite.scale.x < 0):
+		if (horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0):
 			speed = min_speed
-			sprite.scale.x *= -1
+			sprites.scale.x *= -1
 		
 		velocityx = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
 		
@@ -202,3 +232,6 @@ func _on_on_floor_body_entered(body: Node2D) -> void:
 
 func _on_on_floor_body_exited(_body: Node2D) -> void:
 	on_ground = false
+
+func _on_sam_animation_finished(_anim_name: StringName) -> void:
+	can_act = true
