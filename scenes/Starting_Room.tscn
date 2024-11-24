@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://dy56wc14c34ll"]
+[gd_scene load_steps=9 format=4 uid="uid://dy56wc14c34ll"]
 
 [ext_resource type="Script" path="res://scenes/room.gd" id="1_0ntwq"]
 [ext_resource type="PackedScene" uid="uid://bv3smcvbfcn30" path="res://scenes/Pause_Menu.tscn" id="2_0n1ya"]
 [ext_resource type="PackedScene" uid="uid://du116u42p16b" path="res://scenes/Character.tscn" id="2_w8a45"]
 [ext_resource type="Texture2D" uid="uid://qqjrv22yakg1" path="res://structures/sprite_sheet_small.png" id="3_qmr43"]
+[ext_resource type="PackedScene" uid="uid://blm0fovaixhu8" path="res://scenes/Inkwell.tscn" id="4_kcpbn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q3pfw"]
 
@@ -65,7 +66,25 @@ tile_set = SubResource("TileSet_c4us0")
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
 unique_name_in_owner = true
 position = Vector2(857, 1357)
+min_speed = 200
+max_speed = 600
+speed_per_second = 800
+min_gravity = 100
+max_gravity = 900
+gravity_per_second = 200
+num_jumps = 2
+jump_force = 1500
+charge_stab_cost = 10
+grav_cost = 0
+water_cost = 10
+ink_restore_amount = 15
+health_restore_amount = 15
+
+[node name="Inkwell" parent="." instance=ExtResource("4_kcpbn")]
+position = Vector2(2149, 1310)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("2_0n1ya")]
+
+[connection signal="charge_stab" from="Character" to="." method="_on_character_charge_stab"]

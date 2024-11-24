@@ -15,6 +15,13 @@ const Global = preload("res://scripts/global.gd")
 
 @export var grav_frames: int = 5
 
+@export var charge_stab_cost: int = 10
+@export var grav_cost: int = 0
+@export var water_cost: int = 10
+
+@export var ink_restore_amount: int = 15
+@export var health_restore_amount: int = 15
+
 var speed: int = min_speed
 var gravity: int = max_speed
 var cur_jumps: int = 0
@@ -23,12 +30,40 @@ var on_ground: bool = false
 var go_left: int = 0
 var go_right: int = 0
 var grav_increment: float = (PI * .5) / grav_frames
-var can_act = true
+var can_act: bool = true
+var restore_ink: bool = false
+var restore_health: bool = false
 
 @onready var sprite: Node2D = %Node2D
 @onready var anims: AnimationPlayer = %AnimationPlayer
 @onready var cam: Camera2D = %Player_Cam
 @onready var hitbox: CollisionShape2D = $Hitbox
+@onready var health: ProgressBar = $Player_Cam/HUD/Health
+@onready var ink: ProgressBar = $Player_Cam/HUD/Ink
+
+signal charge_stab
+signal water
+#signal gravity_left
+#signal gravity_right
+
+func _ready():
+	speed= min_speed
+	gravity= max_speed
+	cur_jumps= 0
+	grav_direction= Global.down
+	on_ground = false
+	go_left= 0
+	go_right= 0
+	grav_increment = (PI * .5) / grav_frames
+	can_act = true
+	restore_ink = false
+	restore_health = false
+
+func give_ink() -> void:
+	restore_ink = true
+	
+func give_health() -> void:
+	restore_health = true
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -69,6 +104,7 @@ func get_grav_velocity_y() -> float:
 		return 0
 		
 func _process(_delta):
+	#Gravity stuff
 	if go_left > 0:
 		self.rotate(grav_increment)
 		go_left -= 1
@@ -92,6 +128,7 @@ func _process(_delta):
 			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 			get_tree().paused = true
 			can_act = false
+			print(grav_increment)
 			self.rotate(grav_increment)
 			
 		elif Input.is_action_just_pressed("Grav_Right") and can_act:
@@ -101,6 +138,23 @@ func _process(_delta):
 			get_tree().paused = true
 			can_act = false
 			self.rotate(grav_increment * -1)
+			
+	#Ink stuff
+	if Input.is_action_just_pressed("Ink"):
+		if ink.value >= charge_stab_cost:
+			ink.value -= charge_stab_cost
+			charge_stab.emit()
+			
+	#Inkwell restore stuff
+	if restore_ink:
+		ink.value += ink_restore_amount
+		if ink.value >= ink.max_value:
+			restore_ink = false
+			
+	if restore_health:
+		health.value += health_restore_amount
+		if health.value >= health.max_value:
+			restore_health = false
 
 func _physics_process(delta):
 	if can_act:
@@ -141,7 +195,7 @@ func _physics_process(delta):
 		
 		set_grav_velocity(velocityx, velocityy)
 		
-		move_and_slide()
+	move_and_slide()
 
 func _on_on_floor_body_entered(body: Node2D) -> void:
 	if body != self:

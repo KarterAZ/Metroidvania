@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du116u42p16b"]
+[gd_scene load_steps=17 format=3 uid="uid://du116u42p16b"]
 
 [ext_resource type="Texture2D" uid="uid://b7y6f0xl526vy" path="res://character/char_ref.png" id="1_324wl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
@@ -1303,6 +1303,30 @@ _data = {
 "Run": SubResource("Animation_qmjy3")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dto1k"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6b0d"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rm1f"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tee7l"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqqao"]
 size = Vector2(352, 176)
 
@@ -1497,11 +1521,18 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dto1k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x6b0d")
+value = 75.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Ink" type="ProgressBar" parent="Player_Cam/HUD"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_8rm1f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tee7l")
+value = 50.0
 
 [node name="On_Floor" type="Area2D" parent="."]
 position = Vector2(-8, 0)
