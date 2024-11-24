@@ -186,7 +186,7 @@ func _physics_process(delta):
 			anims.play("Run")
 				
 		#If changed directions
-		if (horizontal_direction < 0 and sprite.scale.x > 0) or (horizontal_direction >= 0 and sprite.scale.x < 0):
+		if (horizontal_direction < 0 and sprite.scale.x > 0) or (horizontal_direction > 0 and sprite.scale.x < 0):
 			speed = min_speed
 			sprite.scale.x *= -1
 		
