@@ -196,14 +196,13 @@ ignore_rotation = false
 zoom = Vector2(0.75, 0.75)
 
 [node name="HUD" type="VBoxContainer" parent="Player_Cam"]
-offset_left = -15500.0
-offset_top = -8490.0
-offset_right = -10400.0
-offset_bottom = -7490.0
+offset_left = -20480.0
+offset_top = -11270.0
+offset_right = -13140.0
+offset_bottom = -9870.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme_override_constants/separation = 20
-metadata/_edit_use_anchors_ = true
 
 [node name="Health" type="ProgressBar" parent="Player_Cam/HUD"]
 layout_mode = 2
