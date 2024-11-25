@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byhdihp361kmc"
-path="res://.godot/imported/sprite_sheet (2).png-e3b67eb5ce6c2676c9386fa4911afd33.ctex"
+uid="uid://dvcjbamaps72t"
+path="res://.godot/imported/icon.svg-4dd07cfaaa8837aed0886d486717ee97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://structures/sprite_sheet (2).png"
-dest_files=["res://.godot/imported/sprite_sheet (2).png-e3b67eb5ce6c2676c9386fa4911afd33.ctex"]
+source_file="res://github_special/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-4dd07cfaaa8837aed0886d486717ee97.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

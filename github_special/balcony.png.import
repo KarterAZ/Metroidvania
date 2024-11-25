@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt5ft1ampnpy8"
-path="res://.godot/imported/wall.png-ec04e5c59286047617c73606e415a05f.ctex"
+uid="uid://unsnr1ywgtg4"
+path="res://.godot/imported/balcony.png-6aab02a6c522761a41750103c2eea568.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://structures/wall.png"
-dest_files=["res://.godot/imported/wall.png-ec04e5c59286047617c73606e415a05f.ctex"]
+source_file="res://github_special/balcony.png"
+dest_files=["res://.godot/imported/balcony.png-6aab02a6c522761a41750103c2eea568.ctex"]
 
 [params]
 
