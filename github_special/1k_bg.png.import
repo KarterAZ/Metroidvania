@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://unsnr1ywgtg4"
-path="res://.godot/imported/balcony.png-8c8ec72fa25adfc3f6b4b1138ac09e6b.ctex"
+uid="uid://blj0cmwcmvdpf"
+path="res://.godot/imported/1k_bg.png-7af17ea569768afaaa89b5ebe40d4201.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://structures/balcony.png"
-dest_files=["res://.godot/imported/balcony.png-8c8ec72fa25adfc3f6b4b1138ac09e6b.ctex"]
+source_file="res://github_special/1k_bg.png"
+dest_files=["res://.godot/imported/1k_bg.png-7af17ea569768afaaa89b5ebe40d4201.ctex"]
 
 [params]
 
