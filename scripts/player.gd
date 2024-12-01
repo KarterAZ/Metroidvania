@@ -33,6 +33,9 @@ var grav_increment: float = (PI * .5) / grav_frames
 var can_act: bool = true
 var restore_ink: bool = false
 var restore_health: bool = false
+var pain_position: Vector2 = Vector2(0, 0)
+var heal_on_reset: bool = false
+var ink_on_reset: bool = false
 
 @onready var sprites: Node2D = %Animation_Handler
 @onready var sam: AnimationPlayer = %Sam
@@ -41,9 +44,8 @@ var restore_health: bool = false
 @onready var sword: Sprite2D = %Sword
 
 @onready var cam: Camera2D = %Player_Cam
-@onready var hitbox: CollisionShape2D = $Hitbox
-@onready var health: ProgressBar = $Player_Cam/HUD/Health
-@onready var ink: ProgressBar = $Player_Cam/HUD/Ink
+@onready var health: ProgressBar = %Health
+@onready var ink: ProgressBar = %Ink
 
 signal charge_stab
 signal water
@@ -62,12 +64,29 @@ func _ready():
 	can_act = true
 	restore_ink = false
 	restore_health = false
+	pain_position = self.get_global_position()
+	
+func new_reset_position(heal=false, ink=false) -> void:
+	pain_position = self.get_global_position()
+	heal_on_reset = heal
+	ink_on_reset = ink
+	
+func reset_position() -> void:
+	self.set_global_position(pain_position)
+	grav_direction = Global.down
+	self.rotation_degrees = 0
 
 func give_ink() -> void:
 	restore_ink = true
 	
 func give_health() -> void:
 	restore_health = true
+	
+func inkwell() -> void:
+	give_ink()
+	give_health()
+	
+	new_reset_position(true, true)
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -178,47 +197,49 @@ func _physics_process(delta):
 			restore_health = false
 			
 	#Physics stuff
+	var horizontal_direction = 0
 	if can_act:
-		var horizontal_direction = Input.get_axis("Left", "Right")
-		var velocityx = get_grav_velocity_x()
-		var velocityy = get_grav_velocity_y()
+		horizontal_direction = Input.get_axis("Left", "Right")
+	
+	var velocityx = get_grav_velocity_x()
+	var velocityy = get_grav_velocity_y()
 		
-		if on_ground:
-			cur_jumps = 0
+	if on_ground:
+		cur_jumps = 0
+		gravity = min_gravity
+		if Input.is_action_just_pressed("Jump") and can_act:
+			cur_jumps += 1
+			velocityy = -jump_force
+	else:
+		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps and can_act:
+			cur_jumps += 2
+			velocityy = -jump_force
 			gravity = min_gravity
-			if Input.is_action_just_pressed("Jump"):
-				cur_jumps += 1
-				velocityy = -jump_force
 		else:
-			if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps:
-				cur_jumps += 2
-				velocityy = -jump_force
-				gravity = min_gravity
-			else:
-				gravity += gravity_per_second * delta
-				velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
+			gravity += gravity_per_second * delta
+			velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
 		
-		#Set speed
-		speed += speed_per_second * delta
+	#Set speed
+	speed += speed_per_second * delta
 		
-		#Set animations
-		if horizontal_direction == 0:
-			hide_sprites()
-			idle.visible = true
-			sam.play("Idle")
-		elif horizontal_direction != 0:
-			hide_sprites()
-			run.visible = true
-			sam.play("Run")
+	#Set animations
+	if horizontal_direction == 0 and can_act:
+		hide_sprites()
+		idle.visible = true
+		sam.play("Idle")
+	elif horizontal_direction != 0:
+		hide_sprites()
+		run.visible = true
+		sam.play("Run")
 				
-		#If changed directions
-		if (horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0):
-			speed = min_speed
-			sprites.scale.x *= -1
+	#If changed directions
+	if can_act and ((horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0)):
+		speed = min_speed
+		sprites.scale.x *= -1
 		
-		velocityx = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
+	velocityx = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
 		
-		set_grav_velocity(velocityx, velocityy)
+	set_grav_velocity(velocityx, velocityy)
 		
 	move_and_slide()
 
@@ -231,3 +252,7 @@ func _on_on_floor_body_exited(_body: Node2D) -> void:
 
 func _on_sam_animation_finished(_anim_name: StringName) -> void:
 	can_act = true
+
+func _on_hitbox_body_entered(_body: Node2D) -> void:
+	health.value -= 5
+	reset_position()

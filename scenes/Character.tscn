@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://du116u42p16b"]
+[gd_scene load_steps=19 format=3 uid="uid://du116u42p16b"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
 [ext_resource type="Texture2D" uid="uid://b0ftwfi3333cc" path="res://sam/sam_idle.png" id="7_ahlrx"]
@@ -177,6 +177,9 @@ _data = {
 "Sword": SubResource("Animation_yeqpj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57c31"]
+size = Vector2(1700, 3120)
+
 [node name="Character" type="CharacterBody2D"]
 position = Vector2(-10, 115)
 scale = Vector2(0.05, 0.05)
@@ -185,7 +188,8 @@ min_speed = 600
 max_speed = 1000
 jump_force = 1750
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Collision_Capsule" type="CollisionShape2D" parent="."]
+visibility_layer = 3
 position = Vector2(-144, -328)
 shape = SubResource("CapsuleShape2D_m1avx")
 
@@ -205,6 +209,7 @@ size_flags_vertical = 2
 theme_override_constants/separation = 20
 
 [node name="Health" type="ProgressBar" parent="Player_Cam/HUD"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
@@ -214,6 +219,7 @@ value = 75.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Ink" type="ProgressBar" parent="Player_Cam/HUD"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -276,6 +282,16 @@ libraries = {
 "": SubResource("AnimationLibrary_hdeby")
 }
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Hitbox_Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-130, -260)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_57c31")
+
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
 [connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]
 [connection signal="animation_finished" from="Animation_Handler/Sam" to="." method="_on_sam_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
