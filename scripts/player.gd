@@ -6,9 +6,9 @@ const Global = preload("res://scripts/global.gd")
 @export var max_speed: int = 600
 @export var speed_per_second: int = 800
 
-@export var min_gravity: int = 100
-@export var max_gravity: int = 900
-@export var gravity_per_second: int = 200
+@export var min_gravity: int = 75
+@export var max_gravity: int = 875
+@export var gravity_per_second: int = 100
 
 @export var num_jumps: int = 2
 @export var jump_force: int = 1500
@@ -34,6 +34,7 @@ var can_act: bool = true
 var restore_ink: bool = false
 var restore_health: bool = false
 var pain_position: Vector2 = Vector2(0, 0)
+var pain_direction: int = Global.down
 var heal_on_reset: bool = false
 var ink_on_reset: bool = false
 
@@ -47,6 +48,7 @@ var ink_on_reset: bool = false
 @onready var health: ProgressBar = %Health
 @onready var ink: ProgressBar = %Ink
 
+signal dead
 signal charge_stab
 signal water
 #signal gravity_left
@@ -66,8 +68,9 @@ func _ready():
 	restore_health = false
 	pain_position = self.get_global_position()
 	
-func new_reset_position(heal=false, ink=false) -> void:
+func new_reset_position(heal=false, ink=false, direction=Global.down) -> void:
 	pain_position = self.get_global_position()
+	pain_direction = direction
 	heal_on_reset = heal
 	ink_on_reset = ink
 	
@@ -82,13 +85,13 @@ func give_ink() -> void:
 func give_health() -> void:
 	restore_health = true
 	
-func inkwell(restore_red_ink=false) -> void:
+func inkwell(restore_red_ink=false, direction=Global.down) -> void:
 	give_ink()
 	if restore_red_ink:
 		give_health()
-		new_reset_position(true, true)
+		new_reset_position(true, true, direction)
 	else:
-		new_reset_position(true, false)
+		new_reset_position(true, false, direction)
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -257,4 +260,6 @@ func _on_sam_animation_finished(_anim_name: StringName) -> void:
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	health.value -= 5
+	if health.value == 0:
+		dead.emit()
 	reset_position()
