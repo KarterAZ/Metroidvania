@@ -82,11 +82,13 @@ func give_ink() -> void:
 func give_health() -> void:
 	restore_health = true
 	
-func inkwell() -> void:
+func inkwell(restore_red_ink=false) -> void:
 	give_ink()
-	give_health()
-	
-	new_reset_position(true, true)
+	if restore_red_ink:
+		give_health()
+		new_reset_position(true, true)
+	else:
+		new_reset_position(true, false)
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
