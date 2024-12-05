@@ -1,18 +1,20 @@
 extends Control
 
-@onready var menu = $"."
+var main_menu = "res://scenes/Title_Screen.tscn"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	open_close_menu()
 	
 func pause() -> void:
+	self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	get_tree().paused = true
-	menu.visible = true
+	self.visible = true
 		
 func resume() -> void:
 	get_tree().paused = false
-	menu.visible = false
+	self.set_process_mode(Node.PROCESS_MODE_INHERIT)
+	self.visible = false
 
 func open_close_menu() -> void:
 	if Input.is_action_just_pressed("Menu") and !get_tree().paused:
@@ -25,3 +27,6 @@ func _on_resume_game_pressed() -> void:
 
 func _on_exit_game_pressed() -> void:
 	get_tree().quit()
+
+func _on_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file(main_menu)
