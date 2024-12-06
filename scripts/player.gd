@@ -55,20 +55,21 @@ signal water
 #signal gravity_right
 
 func _ready():
-	speed= min_speed
-	gravity= max_speed
-	cur_jumps= 0
-	grav_direction= Global.down
+	speed = min_speed
+	gravity = max_speed
+	cur_jumps = 0
+	grav_direction = Global.down
 	on_ground = false
-	go_left= 0
-	go_right= 0
+	go_left = 0
+	go_right = 0
 	grav_increment = (PI * .5) / grav_frames
 	can_act = true
 	restore_ink = false
 	restore_health = false
 	pain_position = self.get_global_position()
 	
-func new_reset_position(heal=false, ink=false, direction=Global.down) -> void:
+func new_reset_position(heal, ink, direction) -> void:
+	print(heal, ink, direction)
 	pain_position = self.get_global_position()
 	pain_direction = direction
 	heal_on_reset = heal
@@ -76,8 +77,8 @@ func new_reset_position(heal=false, ink=false, direction=Global.down) -> void:
 	
 func reset_position() -> void:
 	self.set_global_position(pain_position)
-	grav_direction = Global.down
-	self.rotation_degrees = 0
+	grav_direction = pain_direction
+	self.rotation_degrees = pain_direction * -90
 
 func give_ink() -> void:
 	restore_ink = true
@@ -85,13 +86,13 @@ func give_ink() -> void:
 func give_health() -> void:
 	restore_health = true
 	
-func inkwell(restore_red_ink=false, direction=Global.down) -> void:
+func inkwell(restore_red_ink, direction) -> void:
 	give_ink()
 	if restore_red_ink:
 		give_health()
 		new_reset_position(true, true, direction)
 	else:
-		new_reset_position(true, false, direction)
+		new_reset_position(false, true, direction)
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -136,6 +137,22 @@ func hide_sprites() -> void:
 	run.visible = false
 	sword.visible = false
 	
+func change_grav(change_left : bool) -> void:
+	if change_left:
+		grav_direction = Global.left_dir(grav_direction)
+		go_left = grav_frames - 1
+		self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+		get_tree().paused = true
+		can_act = false
+		self.rotate(grav_increment)
+	else:
+		grav_direction = Global.right_dir(grav_direction)
+		go_right = grav_frames - 1
+		self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+		get_tree().paused = true
+		can_act = false
+		self.rotate(grav_increment * -1)
+	
 func _physics_process(delta):
 	#Gravity stuff
 	if go_left > 0:
@@ -156,20 +173,10 @@ func _physics_process(delta):
 	
 	if on_ground:
 		if Input.is_action_just_pressed("Grav_Left") and can_act:
-			grav_direction = Global.left_dir(grav_direction)
-			go_left = grav_frames - 1
-			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
-			get_tree().paused = true
-			can_act = false
-			self.rotate(grav_increment)
+			change_grav(true)
 			
 		elif Input.is_action_just_pressed("Grav_Right") and can_act:
-			grav_direction = Global.right_dir(grav_direction)
-			go_right = grav_frames - 1
-			self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
-			get_tree().paused = true
-			can_act = false
-			self.rotate(grav_increment * -1)
+			change_grav(false)
 			
 	#Ink stuff
 	if Input.is_action_just_pressed("Ink"):

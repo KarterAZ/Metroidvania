@@ -19,3 +19,7 @@ func _on_character_charge_stab() -> void:
 func _on_character_dead() -> void:
 	game_over.visible = true
 	get_tree().paused = true
+
+func _on_change_grav_left_body_entered(body: Node2D) -> void:
+	if body.has_method("change_grav"):
+		body.change_grav(true)
