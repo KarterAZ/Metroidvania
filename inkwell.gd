@@ -7,5 +7,4 @@ const Global = preload("res://scripts/global.gd")
 
 func _on_restore_area_body_entered(body: Node2D) -> void:
 	if body.has_method("inkwell"):
-		print(restore_red_ink, direction)
 		body.inkwell(restore_red_ink, direction)

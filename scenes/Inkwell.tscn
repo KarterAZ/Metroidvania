@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvcjbamaps72t" path="res://github_special/icon.svg" id="1_cfxeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0cdh"]
-size = Vector2(235, 179)
+size = Vector2(235, 253)
 
 [node name="Inkwell" type="Node2D"]
 script = ExtResource("1_ajhi8")
@@ -15,7 +15,7 @@ texture = ExtResource("1_cfxeo")
 [node name="Restore_Area" type="Area2D" parent="."]
 
 [node name="Restore_Shape" type="CollisionShape2D" parent="Restore_Area"]
-position = Vector2(1.5, -14.5)
+position = Vector2(1.5, -51.5)
 shape = SubResource("RectangleShape2D_w0cdh")
 
 [connection signal="body_entered" from="Restore_Area" to="." method="_on_restore_area_body_entered"]

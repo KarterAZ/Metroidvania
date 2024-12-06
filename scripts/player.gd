@@ -69,7 +69,6 @@ func _ready():
 	pain_position = self.get_global_position()
 	
 func new_reset_position(heal, ink, direction) -> void:
-	print(heal, ink, direction)
 	pain_position = self.get_global_position()
 	pain_direction = direction
 	heal_on_reset = heal
