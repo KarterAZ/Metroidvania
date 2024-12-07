@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl5p2g8eg7v1f"]
+
+[ext_resource type="Texture2D" uid="uid://cwvegqms5gr6p" path="res://github_special/ground.png" id="1_j80ck"]
+[ext_resource type="Script" path="res://scripts/grav_pickup.gd" id="1_mbtev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quyb7"]
+size = Vector2(223, 224)
+
+[node name="GravPickup" type="Node2D"]
+script = ExtResource("1_mbtev")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.219, 0.222)
+texture = ExtResource("1_j80ck")
+
+[node name="Pickup_Area" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Pickup_Area"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_quyb7")
+
+[connection signal="body_entered" from="Pickup_Area" to="." method="_on_pickup_area_body_entered"]

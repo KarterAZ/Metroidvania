@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://usvel7wlebtg"]
+
+[ext_resource type="Script" path="res://scripts/ink_pickup.gd" id="1_jhww5"]
+[ext_resource type="Texture2D" uid="uid://cwvegqms5gr6p" path="res://github_special/ground.png" id="2_0fy01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kolub"]
+size = Vector2(223, 224)
+
+[node name="InkPickup" type="Node2D"]
+script = ExtResource("1_jhww5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.219, 0.222)
+texture = ExtResource("2_0fy01")
+
+[node name="Pickup_Area" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Pickup_Area"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_kolub")
+
+[connection signal="body_entered" from="Pickup_Area" to="." method="_on_pickup_area_body_entered"]

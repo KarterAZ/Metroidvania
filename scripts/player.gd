@@ -17,10 +17,15 @@ const Global = preload("res://scripts/global.gd")
 
 @export var charge_stab_cost: int = 10
 @export var grav_cost: int = 0
-@export var water_cost: int = 5
+@export var water_cost: int = 20
+@export var sword_cost: int = 5
 
 @export var ink_restore_amount: int = 15
 @export var health_restore_amount: int = 15
+
+@export var can_ink: bool = false
+@export var can_water: bool = false
+@export var can_grav: bool = false
 
 var speed: int = min_speed
 var gravity: int = max_speed
@@ -51,8 +56,8 @@ var ink_on_reset: bool = false
 signal dead
 signal charge_stab
 signal water
-#signal gravity_left
-#signal gravity_right
+signal gravity_left
+signal gravity_right
 
 func _ready():
 	speed = min_speed
@@ -68,11 +73,11 @@ func _ready():
 	restore_health = false
 	pain_position = self.get_global_position()
 	
-func new_reset_position(heal, ink, direction) -> void:
+func new_reset_position(heal, fill_ink, direction) -> void:
 	pain_position = self.get_global_position()
 	pain_direction = direction
 	heal_on_reset = heal
-	ink_on_reset = ink
+	ink_on_reset = fill_ink
 	
 func reset_position() -> void:
 	self.set_global_position(pain_position)
@@ -92,6 +97,26 @@ func inkwell(restore_red_ink, direction) -> void:
 		new_reset_position(true, true, direction)
 	else:
 		new_reset_position(false, true, direction)
+
+func ink_get() -> void:
+	can_ink = true
+	#TODO: play audio, maybe text for controls?
+	
+func water_get() -> void:
+	can_water = true
+	#TODO: play audio, maybe text for controls?
+	
+func grav_get() -> void:
+	can_grav = true
+	#TODO: play audio, maybe text for controls?
+	
+func health_up_get() -> void:
+	health.max_value += 10
+	health.value = health.max_value
+	
+func ink_up_get() -> void:
+	ink.max_value += 10
+	ink.value = ink.max_value
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -137,20 +162,22 @@ func hide_sprites() -> void:
 	sword.visible = false
 	
 func change_grav(change_left : bool) -> void:
+	ink.value -= grav_cost
+	
 	if change_left:
+		gravity_left.emit()
 		grav_direction = Global.left_dir(grav_direction)
 		go_left = grav_frames - 1
-		self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
-		get_tree().paused = true
-		can_act = false
 		self.rotate(grav_increment)
 	else:
+		gravity_right.emit()
 		grav_direction = Global.right_dir(grav_direction)
 		go_right = grav_frames - 1
-		self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
-		get_tree().paused = true
-		can_act = false
 		self.rotate(grav_increment * -1)
+		
+	self.set_process_mode(Node.PROCESS_MODE_ALWAYS)
+	get_tree().paused = true
+	can_act = false
 	
 func _physics_process(delta):
 	#Gravity stuff
@@ -171,20 +198,20 @@ func _physics_process(delta):
 			can_act = true
 	
 	if on_ground:
-		if Input.is_action_just_pressed("Grav_Left") and can_act:
+		if Input.is_action_just_pressed("Grav_Left") and can_act and can_grav:
 			change_grav(true)
 			
-		elif Input.is_action_just_pressed("Grav_Right") and can_act:
+		elif Input.is_action_just_pressed("Grav_Right") and can_act and can_grav:
 			change_grav(false)
 			
 	#Ink stuff
-	if Input.is_action_just_pressed("Ink"):
+	if Input.is_action_just_pressed("Ink") and can_act and can_ink:
 		if ink.value >= charge_stab_cost:
 			ink.value -= charge_stab_cost
 			charge_stab.emit()
 			
 	#Water stuff
-	if Input.is_action_just_pressed("Water"):
+	if Input.is_action_just_pressed("Water") and can_act and can_water:
 		if ink.value >= water_cost:
 			ink.value -= water_cost
 			water.emit()
