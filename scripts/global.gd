@@ -9,3 +9,7 @@ static func right_dir(dir) -> int:
 static func left_dir(dir) -> int:
 	dir += dir_mod - 1
 	return dir % dir_mod
+
+#Damage codes
+enum {no_attack=0, good_attack=1, bad_attack=2}
+enum {no_sword=0, black_sword=1, red_sword=2}

@@ -12,6 +12,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var num_jumps: int = 2
 @export var jump_force: int = 1500
+@export var knockback: int = 500
 
 @export var grav_frames: int = 5
 
@@ -19,6 +20,9 @@ const Global = preload("res://scripts/global.gd")
 @export var grav_cost: int = 0
 @export var water_cost: int = 20
 @export var sword_cost: int = 5
+
+@export var sword_damage: int = 10
+@export var water_damage: int = 25
 
 @export var ink_restore_amount: int = 15
 @export var health_restore_amount: int = 15
@@ -42,12 +46,18 @@ var pain_position: Vector2 = Vector2(0, 0)
 var pain_direction: int = Global.down
 var heal_on_reset: bool = false
 var ink_on_reset: bool = false
+var attacking: int = Global.no_attack
+var hit_bodies: Array[Node2D] = []
+var has_sword: int = Global.red_sword
+var wet_bodies: Array[Node2D] = []
 
 @onready var sprites: Node2D = %Animation_Handler
 @onready var sam: AnimationPlayer = %Sam
 @onready var idle: Sprite2D = %Idle
 @onready var run: Sprite2D = %Run
 @onready var sword: Sprite2D = %Sword
+@onready var water: Sprite2D = %Water
+@onready var hit: Area2D = %Hit
 
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
@@ -55,7 +65,7 @@ var ink_on_reset: bool = false
 
 signal dead
 signal charge_stab
-signal water
+signal water_blotch
 signal gravity_left
 signal gravity_right
 
@@ -117,6 +127,45 @@ func health_up_get() -> void:
 func ink_up_get() -> void:
 	ink.max_value += 10
 	ink.value = ink.max_value
+	
+func bad_collision_start() -> void:
+	attacking = Global.bad_attack
+	
+func parry_collision_start() -> void:
+	attacking = Global.good_attack
+	
+func no_collision_start() -> void:
+	attacking = Global.no_attack
+	
+func water_attack_give() -> void:
+	print("emitting", wet_bodies)
+	water_blotch.emit(wet_bodies)
+	for wet_body in wet_bodies:
+		if wet_body.has_method("attack_receive"):
+			wet_body.attack_receive(water_damage)
+	
+func attack_give() -> void:
+	print("Hit em x", len(hit_bodies))
+	for hit_body in hit_bodies:
+		if hit_body.has_method("attack_receive"):
+			hit_body.attack_receive(sword_damage)
+	
+func attack_receive(damage_value: int) -> void:
+	print("Being hit on")
+	if attacking == Global.good_attack:
+		print("parried!")
+		pass #TODO: Have feedback for player on parry
+	else:
+		if attacking == Global.bad_attack:
+			print("ur bad @ parry")
+			has_sword -= 1
+		health.value -= damage_value
+		if sam.is_playing():
+			sam.stop()
+			can_act = true
+	
+	#Knockback
+	set_grav_velocity(get_grav_velocity_x(), get_grav_velocity_y()-knockback)
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -160,6 +209,7 @@ func hide_sprites() -> void:
 	idle.visible = false
 	run.visible = false
 	sword.visible = false
+	water.visible = false
 	
 func change_grav(change_left : bool) -> void:
 	ink.value -= grav_cost
@@ -180,6 +230,10 @@ func change_grav(change_left : bool) -> void:
 	can_act = false
 	
 func _physics_process(delta):
+	#Check if dead
+	if health.value == 0:
+		dead.emit()
+		
 	#Gravity stuff
 	if go_left > 0:
 		self.rotate(grav_increment)
@@ -214,7 +268,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Water") and can_act and can_water:
 		if ink.value >= water_cost:
 			ink.value -= water_cost
-			water.emit()
+			
+			hide_sprites()
+			water.visible = true
+			sam.play("Water")
+			can_act = false
 			
 	#Attack stuff
 	if Input.is_action_just_pressed("Attack"):
@@ -293,6 +351,22 @@ func _on_sam_animation_finished(_anim_name: StringName) -> void:
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	health.value -= 5
-	if health.value == 0:
-		dead.emit()
 	reset_position()
+
+func _on_hit_body_entered(body: Node2D) -> void:
+	if body != self:
+		hit_bodies.append(body)
+
+func _on_hit_body_exited(body: Node2D) -> void:
+	if body != self:
+		hit_bodies.remove_at(hit_bodies.find(body))
+
+func _on_water_spot_body_entered(body: Node2D) -> void:
+	if body != self:
+		print("Wet body")
+		wet_bodies.append(body)
+	
+func _on_water_spot_body_exited(body: Node2D) -> void:
+	if body != self:
+		print("Less wet body")
+		wet_bodies.remove_at(wet_bodies.find(body))
