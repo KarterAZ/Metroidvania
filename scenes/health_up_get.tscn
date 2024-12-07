@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://basb3oomd2t80"]
+
+[ext_resource type="Script" path="res://scripts/health_up_get.gd" id="1_7l6i0"]
+[ext_resource type="Texture2D" uid="uid://qqjrv22yakg1" path="res://github_special/sprite_sheet_small.png" id="1_bio8n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p85tw"]
+size = Vector2(223, 224)
+
+[node name="HealthUpGet" type="Node2D"]
+script = ExtResource("1_7l6i0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.219, 0.222)
+texture = ExtResource("1_bio8n")
+
+[node name="Pickup_Area" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Pickup_Area"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_p85tw")
+
+[connection signal="body_entered" from="Pickup_Area" to="." method="_on_pickup_area_body_entered"]
