@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://blm0fovaixhu8"]
 
-[ext_resource type="Script" path="res://inkwell.gd" id="1_ajhi8"]
+[ext_resource type="Script" path="res://scripts/inkwell.gd" id="1_ajhi8"]
 [ext_resource type="Texture2D" uid="uid://dvcjbamaps72t" path="res://github_special/icon.svg" id="1_cfxeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0cdh"]
