@@ -32,6 +32,7 @@ animations = [{
 
 [node name="Charge_Stab" type="StaticBody2D"]
 position = Vector2(475, -100)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_tja4u")
 
 [node name="Walk_Box" type="CollisionShape2D" parent="."]
