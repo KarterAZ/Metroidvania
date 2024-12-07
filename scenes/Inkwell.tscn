@@ -1,21 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://blm0fovaixhu8"]
 
 [ext_resource type="Script" path="res://scripts/inkwell.gd" id="1_ajhi8"]
-[ext_resource type="Texture2D" uid="uid://dvcjbamaps72t" path="res://github_special/icon.svg" id="1_cfxeo"]
+[ext_resource type="Texture2D" uid="uid://dudbttbkkgdbk" path="res://items/inkwell.png" id="2_trjct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0cdh"]
-size = Vector2(235, 253)
+size = Vector2(295, 327)
 
 [node name="Inkwell" type="Node2D"]
 script = ExtResource("1_ajhi8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_cfxeo")
+unique_name_in_owner = true
+position = Vector2(0, -52)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_trjct")
 
 [node name="Restore_Area" type="Area2D" parent="."]
 
 [node name="Restore_Shape" type="CollisionShape2D" parent="Restore_Area"]
-position = Vector2(1.5, -51.5)
+position = Vector2(8.5, -88.5)
 shape = SubResource("RectangleShape2D_w0cdh")
 
 [connection signal="body_entered" from="Restore_Area" to="." method="_on_restore_area_body_entered"]

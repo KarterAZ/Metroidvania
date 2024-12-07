@@ -709,48 +709,46 @@ tile_set = SubResource("TileSet_c4us0")
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
 unique_name_in_owner = true
 position = Vector2(415.001, 1738)
-can_ink = true
-can_grav = true
 
 [node name="Top_Ruins_Start_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(5184, 2580)
+position = Vector2(5170, 2650)
 restore_red_ink = true
 
 [node name="Ruins_Start_Inkwell2" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(6033, 4703)
+position = Vector2(6033, 4740)
 
 [node name="Ink_Get_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(21574, 8153)
+position = Vector2(22054, 8196)
 
 [node name="Ink_Learn_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(20845, 5575)
+position = Vector2(20858, 5647)
 restore_red_ink = true
 
 [node name="Before_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(29449, 5603)
+position = Vector2(29443, 5641)
 
 [node name="Blocker_Guy_Inkwell2" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(30644, 4416)
+position = Vector2(30653, 4441)
 restore_red_ink = true
 
 [node name="Before_Grav_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(20592, -840)
+position = Vector2(20592, -800)
 direction = 3
 
 [node name="Grav_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(10655, 1850)
+position = Vector2(10638, 1888)
 restore_red_ink = true
 
 [node name="Top_Ruins_Secret_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(5591, -1282)
+position = Vector2(5599, -1310)
 rotation = 3.14159
 direction = 2
 
 [node name="Penultimate_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(8271, 3352)
+position = Vector2(8234, 3396)
 
 [node name="Final_Boss_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(10973, 2320)
+position = Vector2(10976, 2354)
 restore_red_ink = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
