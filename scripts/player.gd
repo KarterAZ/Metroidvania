@@ -68,6 +68,7 @@ var suffer_in_ice_physics: bool = false
 @onready var water: Sprite2D = %Water
 @onready var hit: Area2D = %Hit
 @onready var repair_timer: Timer = %Repair_Timer
+@onready var get_away_box: CollisionShape2D = %Get_Away_Box
 
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
@@ -180,7 +181,9 @@ func water_attack_give() -> void:
 func attack_give() -> void:
 	for hit_body in hit_bodies:
 		if hit_body.has_method("attack_receive"):
+			get_away_box.disabled = false
 			hit_body.attack_receive(sword_damage)
+			get_away_box.disabled = true
 			
 func attack_receive(damage_value: int) -> void:
 	if attacking == Global.good_attack:
@@ -196,9 +199,11 @@ func attack_receive(damage_value: int) -> void:
 			can_attack = true
 	
 		#Knockback
+		get_away_box.disabled = false
 		suffer_in_ice_physics = true
 		set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - (knockback / 2))
 		move_and_slide()
+		get_away_box.disabled = true
 		
 		if(is_player):
 			reset_position()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://du116u42p16b"]
+[gd_scene load_steps=25 format=3 uid="uid://du116u42p16b"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
 [ext_resource type="Texture2D" uid="uid://dt2wfet2y2edc" path="res://anim exports/all sprite sheets/idle_atk_sheet.png" id="4_01n6b"]
@@ -39,7 +39,7 @@ corner_radius_bottom_left = 10
 size = Vector2(1704, 764)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2wdq"]
-size = Vector2(600, 916.5)
+size = Vector2(1055, 916.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64xid"]
 radius = 1247.9
@@ -229,10 +229,14 @@ _data = {
 size = Vector2(1700, 3120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhy2t"]
-size = Vector2(11750, 2690)
+size = Vector2(13175, 4780)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtqkr"]
-size = Vector2(6360.01, 2770)
+size = Vector2(6360.01, 2960)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pncwx"]
+radius = 180.0
+height = 3480.0
 
 [node name="Character" type="CharacterBody2D"]
 scale = Vector2(0.05, 0.05)
@@ -316,7 +320,7 @@ hframes = 6
 unique_name_in_owner = true
 
 [node name="Hit_Collision" type="CollisionShape2D" parent="Animation_Handler/Sword/Hit"]
-position = Vector2(500, 15)
+position = Vector2(272.5, 15)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_c2wdq")
 script = ExtResource("11_23mv5")
@@ -356,7 +360,7 @@ shape = SubResource("RectangleShape2D_57c31")
 
 [node name="Left_Detection" type="CollisionShape2D" parent="Enemy_Left_Detection"]
 unique_name_in_owner = true
-position = Vector2(-6340, -345)
+position = Vector2(-6652.5, -1420)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_fhy2t")
 
@@ -364,14 +368,14 @@ shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Right_Detection" type="CollisionShape2D" parent="Enemy_Right_Detection"]
 unique_name_in_owner = true
-position = Vector2(6200, -260)
+position = Vector2(6600, -1420)
 shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Enemy_Attack" type="Area2D" parent="."]
 
 [node name="Enemy_Detection_Attack" type="CollisionShape2D" parent="Enemy_Attack"]
 unique_name_in_owner = true
-position = Vector2(7.62939e-05, -365)
+position = Vector2(7.62939e-05, -460.001)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_xtqkr")
 
@@ -381,6 +385,14 @@ unique_name_in_owner = true
 [node name="Win_Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
+
+[node name="Get_Away_Box" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1720, 200)
+rotation = 2.26893
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_pncwx")
+disabled = true
 
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
 [connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]
