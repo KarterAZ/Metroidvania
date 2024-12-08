@@ -43,12 +43,10 @@ func _on_character_water_blotch(wet_bodies: Array[Node2D]) -> void:
 				#if collision on physics layer 2
 				platforms.erase_cell(coord)
 
-
 func _on_character_water_blotch_start() -> void:
 	water_effect.position = character.position
 	water_effect.visible = true
 	water.play("new_animation")
-
 
 func _on_water_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "new_animation":

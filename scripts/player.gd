@@ -372,7 +372,7 @@ func _physics_process(delta):
 	speed += speed_per_second * delta
 	
 	#Attack stuff
-	if (Input.is_action_just_pressed("Attack") and can_attack and is_player) or (attack_enemy and can_attack and attack_delay<=0 and not is_player):
+	if (attack_enemy and can_attack and attack_delay<=0 and not is_player): #(Input.is_action_just_pressed("Attack") and can_attack and is_player) or 
 		if has_sword > 0:
 			hide_sprites()
 			sword.visible = true
