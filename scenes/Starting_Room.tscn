@@ -763,7 +763,7 @@ tile_set = SubResource("TileSet_c4us0")
 
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
 unique_name_in_owner = true
-position = Vector2(221, 1862)
+position = Vector2(19857, -845)
 can_water = true
 
 [node name="Starting_Enemy" parent="." instance=ExtResource("2_w8a45")]
