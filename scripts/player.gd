@@ -205,8 +205,8 @@ func attack_receive(damage_value: int) -> void:
 		move_and_slide()
 		get_away_box.disabled = true
 		
-		if(is_player):
-			reset_position()
+		#if(is_player):
+			#reset_position()
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
