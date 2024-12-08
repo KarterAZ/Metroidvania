@@ -367,7 +367,6 @@ shape = SubResource("RectangleShape2D_fhy2t")
 [node name="Right_Detection" type="CollisionShape2D" parent="Enemy_Right_Detection"]
 unique_name_in_owner = true
 position = Vector2(6200, -260)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Enemy_Attack" type="Area2D" parent="."]
@@ -380,6 +379,10 @@ shape = SubResource("RectangleShape2D_xtqkr")
 
 [node name="Repair_Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="Win_Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
 
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
 [connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]
@@ -396,3 +399,4 @@ unique_name_in_owner = true
 [connection signal="body_entered" from="Enemy_Attack" to="." method="_on_enemy_attack_body_entered"]
 [connection signal="body_exited" from="Enemy_Attack" to="." method="_on_enemy_attack_body_exited"]
 [connection signal="timeout" from="Repair_Timer" to="." method="_on_repair_timer_timeout"]
+[connection signal="timeout" from="Win_Timer" to="." method="_on_win_timer_timeout"]

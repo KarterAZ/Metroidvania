@@ -83,6 +83,7 @@ var attack_delay: int = 0
 @onready var left_detection: CollisionShape2D = %Left_Detection
 @onready var right_detection: CollisionShape2D = %Right_Detection
 @onready var enemy_detection_attack: CollisionShape2D = %Enemy_Detection_Attack
+@onready var win_timer: Timer = %Win_Timer
 
 signal dead
 signal charge_stab
@@ -258,8 +259,19 @@ func change_grav(change_left : bool) -> void:
 func _physics_process(delta):
 	#Check if dead
 	if health.value == 0:
-		if is_player or is_final_boss:
+		if is_player:
 			dead.emit()
+		elif is_final_boss:
+			win_timer.start()
+			self.visible = false
+			enemy_left = false
+			enemy_right = false
+			attack_enemy = false
+			attack_delay = 1000000
+			left_detection.set_deferred("disabled", true)
+			right_detection.set_deferred("disabled", true)
+			enemy_detection_attack.set_deferred("disabled", true)
+			can_act = false
 		else:
 			self.queue_free()
 		
@@ -446,3 +458,6 @@ func _on_enemy_attack_body_exited(body: Node2D) -> void:
 
 func _on_repair_timer_timeout() -> void:
 	can_act = true
+
+func _on_win_timer_timeout() -> void:
+	dead.emit()
