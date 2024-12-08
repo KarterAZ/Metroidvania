@@ -6,7 +6,7 @@ const Global = preload("res://scripts/global.gd")
 @export var is_final_boss: bool = false
 
 @export var min_speed: int = 200
-@export var max_speed: int = 600
+@export var max_speed: int = 1000
 @export var speed_per_second: int = 800
 
 @export var min_gravity: int = 75
@@ -15,7 +15,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var num_jumps: int = 2
 @export var jump_force: int = 1500
-@export var knockback: int = 1500
+@export var knockback: int = 800
 
 @export var grav_frames: int = 5
 
@@ -40,7 +40,7 @@ const Global = preload("res://scripts/global.gd")
 var speed: int = min_speed
 var gravity: int = max_speed
 var cur_jumps: int = 0
-var horizontal_direction: int = 0
+var last_direction: int = 0
 var grav_direction: int = Global.down
 var on_ground: bool = false
 var go_left: int = 0
@@ -192,7 +192,8 @@ func attack_receive(damage_value: int) -> void:
 			can_act = true
 	
 	#Knockback
-	set_grav_velocity(get_grav_velocity_x(), get_grav_velocity_y()-knockback)
+	set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - knockback)
+	move_and_slide()
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -309,7 +310,6 @@ func _physics_process(delta):
 	if (Input.is_action_just_pressed("Water") and can_act and can_water and is_player) or (attack_enemy and can_act and can_water and not is_player):
 		if ink.value >= water_cost:
 			ink.value -= water_cost
-			
 			hide_sprites()
 			water.visible = true
 			sam.play("Water")
@@ -327,7 +327,7 @@ func _physics_process(delta):
 			restore_health = false
 			
 	#Physics stuff
-	horizontal_direction = 0
+	var horizontal_direction = 0
 	if can_act and is_player:
 		horizontal_direction = Input.get_axis("Left", "Right")
 	elif can_act and not is_player:
@@ -335,10 +335,14 @@ func _physics_process(delta):
 			horizontal_direction = -1
 		elif enemy_right:
 			horizontal_direction = 1
+			
+	if horizontal_direction != 0:
+		last_direction = horizontal_direction
 	
 	var velocityx = get_grav_velocity_x()
 	var velocityy = get_grav_velocity_y()
 		
+	#Get velocityy
 	if on_ground:
 		cur_jumps = 0
 		gravity = min_gravity
@@ -396,7 +400,21 @@ func _physics_process(delta):
 		speed = min_speed
 		sprites.scale.x *= -1
 		
-	velocityx = horizontal_direction * speed if speed < max_speed else horizontal_direction * max_speed
+	#Get velocityx
+	if velocityx < 0:
+		if horizontal_direction == 0:
+			velocityx += speed_per_second * delta
+			if velocityx < 0:
+				velocityx = 0
+	elif velocityx > 0:
+		if horizontal_direction == 0:
+			velocityx -= speed_per_second * delta
+			if velocityx > 0:
+				velocityx = 0
+			
+	velocityx += horizontal_direction * speed
+	if (velocityx > max_speed) or velocityx < (max_speed * -1):
+		velocityx = horizontal_direction * max_speed
 		
 	set_grav_velocity(velocityx, velocityy)
 		
