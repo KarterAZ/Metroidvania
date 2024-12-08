@@ -236,7 +236,7 @@ size = Vector2(6360.01, 2960)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pncwx"]
 radius = 180.0
-height = 3480.0
+height = 4902.67
 
 [node name="Character" type="CharacterBody2D"]
 scale = Vector2(0.05, 0.05)
@@ -388,8 +388,8 @@ wait_time = 3.0
 
 [node name="Get_Away_Box" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1720, 200)
-rotation = 2.26893
+position = Vector2(1900, -540)
+rotation = 2.44346
 scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_pncwx")
 disabled = true
