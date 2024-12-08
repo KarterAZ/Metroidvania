@@ -163,7 +163,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -193,5 +193,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3btq")
-animation = &"run atk"
-frame_progress = 0.788973
+animation = &"run"
+frame_progress = 0.992202
