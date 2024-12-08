@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxenyn64b175t"
-path="res://.godot/imported/effect_frame.png-bd9dbe77837394ee4fb19dd5f3ab62f1.ctex"
+uid="uid://xnxyprun8yee"
+path="res://.godot/imported/fade_frame_2.png-19f1376983c732f057c79b7303adb9f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://github_special/power 2/effect_frame.png"
-dest_files=["res://.godot/imported/effect_frame.png-bd9dbe77837394ee4fb19dd5f3ab62f1.ctex"]
+source_file="res://power2/fade_frame_2.png"
+dest_files=["res://.godot/imported/fade_frame_2.png-19f1376983c732f057c79b7303adb9f1.ctex"]
 
 [params]
 

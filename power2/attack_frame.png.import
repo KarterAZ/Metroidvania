@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xnxyprun8yee"
-path="res://.godot/imported/fade_frame_2.png-cd8800b6bdd4581b2199de8d1ffd97ae.ctex"
+uid="uid://cquhq8qdtrowo"
+path="res://.godot/imported/attack_frame.png-5ec42b9288c6bc421067a94a91f77bf4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://github_special/power 2/fade_frame_2.png"
-dest_files=["res://.godot/imported/fade_frame_2.png-cd8800b6bdd4581b2199de8d1ffd97ae.ctex"]
+source_file="res://power2/attack_frame.png"
+dest_files=["res://.godot/imported/attack_frame.png-5ec42b9288c6bc421067a94a91f77bf4.ctex"]
 
 [params]
 
