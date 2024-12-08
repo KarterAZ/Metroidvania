@@ -186,7 +186,8 @@ func attack_receive(damage_value: int) -> void:
 		pass #TODO: Have feedback for player on parry
 	else:
 		if attacking == Global.bad_attack:
-			has_sword -= 1
+			if has_sword != Global.no_sword:
+				has_sword -= 1
 		health.value -= damage_value
 		if sam.is_playing():
 			sam.stop()
@@ -367,8 +368,8 @@ func _physics_process(delta):
 		if has_sword > 0:
 			hide_sprites()
 			sword.visible = true
-			sam.play("Sword")
 			can_act = false
+			sam.play("Sword")
 			
 			if not is_player:
 				attack_delay = randf_range(min_enemy_attack_delay, max_enemy_attack_delay)
@@ -377,7 +378,7 @@ func _physics_process(delta):
 		
 	#Weapon buff stuff
 	if (Input.is_action_just_pressed("Repair") and can_act and is_player) or (can_act and has_sword==0 and not is_player):
-		print("Hit repair")
+		print("Hit repair -> ", has_sword)
 		
 		if (has_sword == Global.black_sword) and (health.value > sword_cost):
 			print("has black sword")
