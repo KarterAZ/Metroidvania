@@ -28,14 +28,15 @@ func _on_change_grav_left_body_entered(body: Node2D) -> void:
 func _on_character_water_blotch(wet_bodies: Array[Node2D]) -> void:
 	print("emitted", wet_bodies)
 	for wet_body in wet_bodies:
-		var x: int = floor(character.position.x/platforms.tile_set.tile_size.x)
-		var y: int = floor(character.position.y/platforms.tile_set.tile_size.y)-2
-		var coords: Array[Vector2i] = []
-		for i in range(3):
-			for j in range(2):
-				coords.append(Vector2i(x+i-1, y+j-1)) #Gets square around player
-				
-		for coord in coords:
-			#print(platforms.tile_set.get_physics_layer_collision_layer(2))
-			#if collision on physics layer 2
-			platforms.erase_cell(coord)
+		if not wet_body.has_method("attack_receive"):
+			var x: int = floor(character.position.x/platforms.tile_set.tile_size.x)
+			var y: int = floor(character.position.y/platforms.tile_set.tile_size.y)-2
+			var coords: Array[Vector2i] = []
+			for i in range(3):
+				for j in range(2):
+					coords.append(Vector2i(x+i-1, y+j-1)) #Gets square around player
+					
+			for coord in coords:
+				#print(platforms.tile_set.get_physics_layer_collision_layer(2))
+				#if collision on physics layer 2
+				platforms.erase_cell(coord)

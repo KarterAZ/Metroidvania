@@ -7,7 +7,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var min_speed: int = 400
 @export var max_speed: int = 800
-@export var speed_per_second: int = 3000
+@export var speed_per_second: int = 800
 
 @export var min_gravity: int = 75
 @export var max_gravity: int = 875
@@ -47,6 +47,7 @@ var go_left: int = 0
 var go_right: int = 0
 var grav_increment: float = (PI * .5) / grav_frames
 var can_act: bool = true
+var can_attack: bool = true
 var restore_ink: bool = false
 var restore_health: bool = false
 var pain_position: Vector2 = Vector2(0, 0)
@@ -57,6 +58,7 @@ var attacking: int = Global.no_attack
 var hit_bodies: Array[Node2D] = []
 var has_sword: int = Global.red_sword
 var wet_bodies: Array[Node2D] = []
+var suffer_in_ice_physics: bool = false
 
 @onready var sprites: Node2D = %Animation_Handler
 @onready var sam: AnimationPlayer = %Sam
@@ -191,9 +193,10 @@ func attack_receive(damage_value: int) -> void:
 		health.value -= damage_value
 		if sam.is_playing():
 			sam.stop()
-			can_act = true
+			can_attack = true
 	
 		#Knockback
+		suffer_in_ice_physics = true
 		set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - (knockback / 2))
 		move_and_slide()
 
@@ -364,11 +367,11 @@ func _physics_process(delta):
 	speed += speed_per_second * delta
 	
 	#Attack stuff
-	if (Input.is_action_just_pressed("Attack") and can_act and is_player) or (attack_enemy and can_act and attack_delay<=0 and not is_player):
+	if (Input.is_action_just_pressed("Attack") and can_attack and is_player) or (attack_enemy and can_attack and attack_delay<=0 and not is_player):
 		if has_sword > 0:
 			hide_sprites()
 			sword.visible = true
-			can_act = false
+			can_attack = false
 			sam.play("Sword")
 			
 			if not is_player:
@@ -392,11 +395,11 @@ func _physics_process(delta):
 			repair_timer.start()
 		
 	#Set animations
-	if horizontal_direction == 0 and can_act:
+	if horizontal_direction == 0 and can_act and can_attack:
 		hide_sprites()
 		idle.visible = true
 		sam.play("Idle")
-	elif horizontal_direction != 0 and can_act:
+	elif horizontal_direction != 0 and can_act and can_attack:
 		hide_sprites()
 		run.visible = true
 		sam.play("Run")
@@ -407,18 +410,20 @@ func _physics_process(delta):
 		sprites.scale.x *= -1
 		
 	#Get velocityx
-	if velocityx < 0:
-		if horizontal_direction == 0:
-			velocityx += speed_per_second * delta
-			if velocityx > 0:
-				velocityx = 0
-	elif velocityx > 0:
-		if horizontal_direction == 0:
-			velocityx -= speed_per_second * delta
-			if velocityx < 0:
-				velocityx = 0
+	if velocityx < 0 and suffer_in_ice_physics:
+		velocityx += speed_per_second * delta
+		if velocityx > 0:
+			velocityx = 0
+			suffer_in_ice_physics = false
+		velocityx += horizontal_direction * speed
+	elif velocityx > 0 and suffer_in_ice_physics:
+		velocityx -= speed_per_second * delta
+		if velocityx < 0:
+			velocityx = 0
+			suffer_in_ice_physics = false
+		velocityx += horizontal_direction * speed
 	
-	velocityx += horizontal_direction * speed
+	velocityx = horizontal_direction * speed
 	if (velocityx > max_speed) or velocityx < (max_speed * -1):
 		velocityx = horizontal_direction * max_speed
 		
@@ -435,7 +440,7 @@ func _on_on_floor_body_exited(_body: Node2D) -> void:
 
 func _on_sam_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Sword":
-		can_act = true
+		can_attack = true
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	health.value -= 5
