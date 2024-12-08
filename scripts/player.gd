@@ -181,7 +181,7 @@ func attack_give() -> void:
 	for hit_body in hit_bodies:
 		if hit_body.has_method("attack_receive"):
 			hit_body.attack_receive(sword_damage)
-	
+			
 func attack_receive(damage_value: int) -> void:
 	if attacking == Global.good_attack:
 		ink.value += 5
@@ -408,7 +408,7 @@ func _physics_process(delta):
 		sam.play("Run")
 				
 	#If changed directions
-	if can_act and ((horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0)):
+	if can_act and can_attack and ((horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0)):
 		speed = min_speed
 		sprites.scale.x *= -1
 		
@@ -444,6 +444,8 @@ func _on_on_floor_body_exited(_body: Node2D) -> void:
 func _on_sam_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Sword":
 		can_attack = true
+	elif anim_name == "Water":
+		can_act = true
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	health.value -= 5
