@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://du116u42p16b"]
+[gd_scene load_steps=24 format=3 uid="uid://du116u42p16b"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
 [ext_resource type="Texture2D" uid="uid://dt2wfet2y2edc" path="res://anim exports/all sprite sheets/idle_atk_sheet.png" id="4_01n6b"]
@@ -171,7 +171,7 @@ tracks/2/path = NodePath("%Animation_Handler/..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.35),
+"times": PackedFloat32Array(0, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -227,6 +227,12 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57c31"]
 size = Vector2(1700, 3120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhy2t"]
+size = Vector2(11750, 2690)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtqkr"]
+size = Vector2(4875, 2770)
 
 [node name="Character" type="CharacterBody2D"]
 scale = Vector2(0.05, 0.05)
@@ -348,6 +354,33 @@ position = Vector2(-130, -260)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_57c31")
 
+[node name="Enemy_Left_Detection" type="Area2D" parent="."]
+
+[node name="Left_Detection" type="CollisionShape2D" parent="Enemy_Left_Detection"]
+unique_name_in_owner = true
+position = Vector2(-6340, -345)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_fhy2t")
+
+[node name="Enemy_Right_Detection" type="Area2D" parent="."]
+
+[node name="Right_Detection" type="CollisionShape2D" parent="Enemy_Right_Detection"]
+unique_name_in_owner = true
+position = Vector2(6200, -260)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_fhy2t")
+
+[node name="Enemy_Attack" type="Area2D" parent="."]
+
+[node name="Enemy_Detection_Attack" type="CollisionShape2D" parent="Enemy_Attack"]
+unique_name_in_owner = true
+position = Vector2(2.49985, -365)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_xtqkr")
+
+[node name="Repair_Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
 [connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]
 [connection signal="body_entered" from="Animation_Handler/Sword/Hit" to="." method="_on_hit_body_entered"]
@@ -356,3 +389,10 @@ shape = SubResource("RectangleShape2D_57c31")
 [connection signal="body_exited" from="Animation_Handler/Water/Water_Spot" to="." method="_on_water_spot_body_exited"]
 [connection signal="animation_finished" from="Animation_Handler/Sam" to="." method="_on_sam_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Enemy_Left_Detection" to="." method="_on_enemy_left_detection_body_entered"]
+[connection signal="body_exited" from="Enemy_Left_Detection" to="." method="_on_enemy_left_detection_body_exited"]
+[connection signal="body_entered" from="Enemy_Right_Detection" to="." method="_on_enemy_right_detection_body_entered"]
+[connection signal="body_exited" from="Enemy_Right_Detection" to="." method="_on_enemy_right_detection_body_exited"]
+[connection signal="body_entered" from="Enemy_Attack" to="." method="_on_enemy_attack_body_entered"]
+[connection signal="body_exited" from="Enemy_Attack" to="." method="_on_enemy_attack_body_exited"]
+[connection signal="timeout" from="Repair_Timer" to="." method="_on_repair_timer_timeout"]

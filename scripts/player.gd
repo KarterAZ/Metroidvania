@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const Global = preload("res://scripts/global.gd")
 
+@export var is_player: bool = true
+@export var is_final_boss: bool = false
+
 @export var min_speed: int = 200
 @export var max_speed: int = 600
 @export var speed_per_second: int = 800
@@ -12,7 +15,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var num_jumps: int = 2
 @export var jump_force: int = 1500
-@export var knockback: int = 500
+@export var knockback: int = 1500
 
 @export var grav_frames: int = 5
 
@@ -27,6 +30,9 @@ const Global = preload("res://scripts/global.gd")
 @export var ink_restore_amount: int = 15
 @export var health_restore_amount: int = 15
 
+@export var max_health: int = 100
+@export var max_ink: int = 30
+
 @export var can_ink: bool = false
 @export var can_water: bool = false
 @export var can_grav: bool = false
@@ -34,6 +40,7 @@ const Global = preload("res://scripts/global.gd")
 var speed: int = min_speed
 var gravity: int = max_speed
 var cur_jumps: int = 0
+var horizontal_direction: int = 0
 var grav_direction: int = Global.down
 var on_ground: bool = false
 var go_left: int = 0
@@ -58,10 +65,24 @@ var wet_bodies: Array[Node2D] = []
 @onready var sword: Sprite2D = %Sword
 @onready var water: Sprite2D = %Water
 @onready var hit: Area2D = %Hit
+@onready var repair_timer: Timer = %Repair_Timer
 
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
 @onready var ink: ProgressBar = %Ink
+
+#Enemy stuff
+var enemy_left: bool = false
+var enemy_right: bool = false
+var attack_enemy: bool = false
+var attack_delay: int = 0
+
+@export var min_enemy_attack_delay: float = 20
+@export var max_enemy_attack_delay: float = 100
+
+@onready var left_detection: CollisionShape2D = %Left_Detection
+@onready var right_detection: CollisionShape2D = %Right_Detection
+@onready var enemy_detection_attack: CollisionShape2D = %Enemy_Detection_Attack
 
 signal dead
 signal charge_stab
@@ -82,6 +103,15 @@ func _ready():
 	restore_ink = false
 	restore_health = false
 	pain_position = self.get_global_position()
+	health.max_value = max_health
+	ink.max_value = max_ink
+	
+	if is_player:
+		left_detection.set_deferred("disabled", true)
+		right_detection.set_deferred("disabled", true)
+		enemy_detection_attack.set_deferred("disabled", true)
+	else:
+		cam.visible = false
 	
 func new_reset_position(heal, fill_ink, direction) -> void:
 	pain_position = self.get_global_position()
@@ -138,26 +168,22 @@ func no_collision_start() -> void:
 	attacking = Global.no_attack
 	
 func water_attack_give() -> void:
-	print("emitting", wet_bodies)
 	water_blotch.emit(wet_bodies)
 	for wet_body in wet_bodies:
 		if wet_body.has_method("attack_receive"):
 			wet_body.attack_receive(water_damage)
 	
 func attack_give() -> void:
-	print("Hit em x", len(hit_bodies))
 	for hit_body in hit_bodies:
 		if hit_body.has_method("attack_receive"):
 			hit_body.attack_receive(sword_damage)
 	
 func attack_receive(damage_value: int) -> void:
-	print("Being hit on")
 	if attacking == Global.good_attack:
-		print("parried!")
+		ink.value += 5
 		pass #TODO: Have feedback for player on parry
 	else:
 		if attacking == Global.bad_attack:
-			print("ur bad @ parry")
 			has_sword -= 1
 		health.value -= damage_value
 		if sam.is_playing():
@@ -232,7 +258,10 @@ func change_grav(change_left : bool) -> void:
 func _physics_process(delta):
 	#Check if dead
 	if health.value == 0:
-		dead.emit()
+		if is_player or is_final_boss:
+			dead.emit()
+		else:
+			self.queue_free()
 		
 	#Gravity stuff
 	if go_left > 0:
@@ -252,20 +281,20 @@ func _physics_process(delta):
 			can_act = true
 	
 	if on_ground:
-		if Input.is_action_just_pressed("Grav_Left") and can_act and can_grav:
+		if Input.is_action_just_pressed("Grav_Left") and can_act and can_grav and is_player:
 			change_grav(true)
 			
-		elif Input.is_action_just_pressed("Grav_Right") and can_act and can_grav:
+		elif Input.is_action_just_pressed("Grav_Right") and can_act and can_grav and is_player:
 			change_grav(false)
 			
 	#Ink stuff
-	if Input.is_action_just_pressed("Ink") and can_act and can_ink:
+	if Input.is_action_just_pressed("Ink") and can_act and can_ink and is_player:
 		if ink.value >= charge_stab_cost:
 			ink.value -= charge_stab_cost
 			charge_stab.emit()
 			
 	#Water stuff
-	if Input.is_action_just_pressed("Water") and can_act and can_water:
+	if (Input.is_action_just_pressed("Water") and can_act and can_water and is_player) or (attack_enemy and can_act and can_water and not is_player):
 		if ink.value >= water_cost:
 			ink.value -= water_cost
 			
@@ -273,13 +302,6 @@ func _physics_process(delta):
 			water.visible = true
 			sam.play("Water")
 			can_act = false
-			
-	#Attack stuff
-	if Input.is_action_just_pressed("Attack"):
-		hide_sprites()
-		sword.visible = true
-		sam.play("Sword")
-		can_act = false
 			
 	#Inkwell restore stuff
 	if restore_ink:
@@ -293,9 +315,14 @@ func _physics_process(delta):
 			restore_health = false
 			
 	#Physics stuff
-	var horizontal_direction = 0
-	if can_act:
+	horizontal_direction = 0
+	if can_act and is_player:
 		horizontal_direction = Input.get_axis("Left", "Right")
+	elif can_act and not is_player:
+		if enemy_left:
+			horizontal_direction = -1
+		elif enemy_right:
+			horizontal_direction = 1
 	
 	var velocityx = get_grav_velocity_x()
 	var velocityy = get_grav_velocity_y()
@@ -303,11 +330,11 @@ func _physics_process(delta):
 	if on_ground:
 		cur_jumps = 0
 		gravity = min_gravity
-		if Input.is_action_just_pressed("Jump") and can_act:
+		if Input.is_action_just_pressed("Jump") and can_act and is_player:
 			cur_jumps += 1
 			velocityy = -jump_force
 	else:
-		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps and can_act:
+		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps and can_act and is_player:
 			cur_jumps += 2
 			velocityy = -jump_force
 			gravity = min_gravity
@@ -317,13 +344,37 @@ func _physics_process(delta):
 		
 	#Set speed
 	speed += speed_per_second * delta
+	
+	#Attack stuff
+	if (Input.is_action_just_pressed("Attack") and can_act and is_player) or (attack_enemy and can_act and attack_delay<=0 and not is_player):
+		if has_sword > 0:
+			hide_sprites()
+			sword.visible = true
+			sam.play("Sword")
+			can_act = false
+			
+			if not is_player:
+				attack_delay = randf_range(min_enemy_attack_delay, max_enemy_attack_delay)
+	elif attack_delay > 0:
+		attack_delay -= delta
+		
+	#Weapon buff stuff
+	if (Input.is_action_just_pressed("Repair") and can_act and is_player) or (can_act and has_sword==0 and not is_player):
+		if (has_sword == Global.no_sword) and (ink.value >= sword_cost):
+			ink.value -= sword_cost
+			has_sword = Global.black_sword
+			can_act = false
+			repair_timer.start()
+		elif (has_sword == Global.black_sword) and (health.value > sword_cost):
+			health.value -= sword_cost
+			has_sword = Global.red_sword
 		
 	#Set animations
 	if horizontal_direction == 0 and can_act:
 		hide_sprites()
 		idle.visible = true
 		sam.play("Idle")
-	elif horizontal_direction != 0:
+	elif horizontal_direction != 0 and can_act:
 		hide_sprites()
 		run.visible = true
 		sam.play("Run")
@@ -363,10 +414,35 @@ func _on_hit_body_exited(body: Node2D) -> void:
 
 func _on_water_spot_body_entered(body: Node2D) -> void:
 	if body != self:
-		print("Wet body")
 		wet_bodies.append(body)
 	
 func _on_water_spot_body_exited(body: Node2D) -> void:
 	if body != self:
-		print("Less wet body")
 		wet_bodies.remove_at(wet_bodies.find(body))
+
+func _on_enemy_left_detection_body_entered(body: Node2D) -> void:
+	if body != self:
+		enemy_left = true
+
+func _on_enemy_left_detection_body_exited(body: Node2D) -> void:
+	if body != self:
+		enemy_left = false
+
+func _on_enemy_right_detection_body_entered(body: Node2D) -> void:
+	if body != self:
+		enemy_right = true
+
+func _on_enemy_right_detection_body_exited(body: Node2D) -> void:
+	if body != self:
+		enemy_right = false
+
+func _on_enemy_attack_body_entered(body: Node2D) -> void:
+	if body != self:
+		attack_enemy = true
+
+func _on_enemy_attack_body_exited(body: Node2D) -> void:
+	if body != self:
+		attack_enemy = false
+
+func _on_repair_timer_timeout() -> void:
+	can_act = true
