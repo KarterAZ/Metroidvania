@@ -170,6 +170,7 @@ func no_collision_start() -> void:
 	
 func water_attack_give() -> void:
 	water_blotch.emit(wet_bodies)
+	print(wet_bodies)
 	for wet_body in wet_bodies:
 		if wet_body.has_method("attack_receive"):
 			wet_body.attack_receive(water_damage)
