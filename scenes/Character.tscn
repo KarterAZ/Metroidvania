@@ -287,7 +287,6 @@ unique_name_in_owner = true
 
 [node name="Idle" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("7_ahlrx")
@@ -320,6 +319,7 @@ script = ExtResource("11_23mv5")
 
 [node name="Water" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("6_xuk5q")
