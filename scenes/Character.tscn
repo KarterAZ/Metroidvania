@@ -390,7 +390,6 @@ wait_time = 3.0
 unique_name_in_owner = true
 position = Vector2(1900, -540)
 rotation = 2.44346
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_pncwx")
 disabled = true
 

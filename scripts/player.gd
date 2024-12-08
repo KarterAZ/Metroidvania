@@ -91,6 +91,7 @@ var attack_delay: int = 0
 signal dead
 signal charge_stab
 signal water_blotch
+signal water_blotch_start
 signal gravity_left
 signal gravity_right
 
@@ -326,6 +327,7 @@ func _physics_process(delta):
 			hide_sprites()
 			water.visible = true
 			sam.play("Water")
+			water_blotch_start.emit()
 			can_act = false
 			
 	#Inkwell restore stuff

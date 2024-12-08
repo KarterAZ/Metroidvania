@@ -5,6 +5,8 @@ const CHARGE_STAB = preload("res://scenes/Charge_Stab.tscn")
 @onready var character: CharacterBody2D = %Character
 @onready var game_over: Control = %GameOver
 @onready var platforms: TileMapLayer = %Platforms
+@onready var water: AnimationPlayer = %water
+@onready var water_effect: Sprite2D = $water/water_effect
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -40,3 +42,14 @@ func _on_character_water_blotch(wet_bodies: Array[Node2D]) -> void:
 				#print(platforms.tile_set.get_physics_layer_collision_layer(2))
 				#if collision on physics layer 2
 				platforms.erase_cell(coord)
+
+
+func _on_character_water_blotch_start() -> void:
+	water_effect.position = character.position
+	water_effect.visible = true
+	water.play("new_animation")
+
+
+func _on_water_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "new_animation":
+		water_effect.visible = false
