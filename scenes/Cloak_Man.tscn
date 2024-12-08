@@ -113,9 +113,6 @@ animations = [{
 "texture": ExtResource("16_dmfof")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_4l4pl")
-}, {
-"duration": 1.0,
 "texture": ExtResource("18_gxgm5")
 }, {
 "duration": 1.0,
@@ -123,6 +120,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("20_ceuwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4l4pl")
 }],
 "loop": true,
 "name": &"jump atk",
@@ -137,6 +137,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("23_24voo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4l4pl")
 }],
 "loop": true,
 "name": &"paint_slash",
@@ -193,5 +196,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3btq")
-animation = &"run"
-frame_progress = 0.992202
+animation = &"paint_slash"
+frame_progress = 0.428401
