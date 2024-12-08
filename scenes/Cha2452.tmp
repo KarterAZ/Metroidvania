@@ -1,0 +1,401 @@
+[gd_scene load_steps=24 format=3 uid="uid://du116u42p16b"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
+[ext_resource type="Texture2D" uid="uid://dt2wfet2y2edc" path="res://anim exports/all sprite sheets/idle_atk_sheet.png" id="4_01n6b"]
+[ext_resource type="Texture2D" uid="uid://du1ubrx3y3ugm" path="res://anim exports/all sprite sheets/cleanse_sheet.png" id="6_xuk5q"]
+[ext_resource type="Texture2D" uid="uid://b0ftwfi3333cc" path="res://sam/sam_idle.png" id="7_ahlrx"]
+[ext_resource type="Texture2D" uid="uid://dtwerof0vryec" path="res://sam/sam_run.png" id="8_fy0ea"]
+[ext_resource type="Script" path="res://scripts/collision.gd" id="11_23mv5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1avx"]
+radius = 896.5
+height = 3336.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dto1k"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6b0d"]
+bg_color = Color(0.513726, 0.0509804, 0.0431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rm1f"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tee7l"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqqao"]
+size = Vector2(1704, 764)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2wdq"]
+size = Vector2(600, 916.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64xid"]
+radius = 1247.9
+
+[sub_resource type="Animation" id="Animation_fsis2"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_iveiw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Run:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sword:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Water:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wgksv"]
+resource_name = "Run"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_yeqpj"]
+resource_name = "Sword"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sword:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Sword/Hit/Hit_Collision")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate_area"
+}, {
+"args": [],
+"method": &"deactivate_area"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Animation_Handler/..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"parry_collision_start"
+}, {
+"args": [],
+"method": &"bad_collision_start"
+}, {
+"args": [],
+"method": &"attack_give"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hlyxs"]
+resource_name = "Water"
+length = 0.5
+step = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Water:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Animation_Handler/..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"water_attack_give"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hdeby"]
+_data = {
+"Idle": SubResource("Animation_fsis2"),
+"RESET": SubResource("Animation_iveiw"),
+"Run": SubResource("Animation_wgksv"),
+"Sword": SubResource("Animation_yeqpj"),
+"Water": SubResource("Animation_hlyxs")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57c31"]
+size = Vector2(1700, 3120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhy2t"]
+size = Vector2(11750, 2690)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtqkr"]
+size = Vector2(4875, 2770)
+
+[node name="Character" type="CharacterBody2D"]
+scale = Vector2(0.05, 0.05)
+script = ExtResource("1_q2b7k")
+min_speed = 600
+jump_force = 1750
+
+[node name="Collision_Capsule" type="CollisionShape2D" parent="."]
+visibility_layer = 3
+position = Vector2(-144, -328)
+shape = SubResource("CapsuleShape2D_m1avx")
+
+[node name="Player_Cam" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -500)
+ignore_rotation = false
+zoom = Vector2(0.7, 0.7)
+
+[node name="HUD" type="VBoxContainer" parent="Player_Cam"]
+offset_left = -20480.0
+offset_top = -11270.0
+offset_right = -13140.0
+offset_bottom = -9870.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Health" type="ProgressBar" parent="Player_Cam/HUD"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dto1k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x6b0d")
+value = 95.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Ink" type="ProgressBar" parent="Player_Cam/HUD"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_8rm1f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tee7l")
+max_value = 30.0
+value = 25.0
+
+[node name="On_Floor" type="Area2D" parent="."]
+position = Vector2(-8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="On_Floor"]
+position = Vector2(-136, 1010)
+shape = SubResource("RectangleShape2D_lqqao")
+
+[node name="Animation_Handler" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Idle" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("7_ahlrx")
+hframes = 2
+
+[node name="Run" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("8_fy0ea")
+hframes = 4
+
+[node name="Sword" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("4_01n6b")
+hframes = 6
+
+[node name="Hit" type="Area2D" parent="Animation_Handler/Sword"]
+unique_name_in_owner = true
+
+[node name="Hit_Collision" type="CollisionShape2D" parent="Animation_Handler/Sword/Hit"]
+position = Vector2(500, 15)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_c2wdq")
+script = ExtResource("11_23mv5")
+
+[node name="Water" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("6_xuk5q")
+hframes = 2
+
+[node name="Water_Spot" type="Area2D" parent="Animation_Handler/Water"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Water_Hitbox" type="CollisionShape2D" parent="Animation_Handler/Water/Water_Spot"]
+position = Vector2(-30, 20)
+shape = SubResource("CircleShape2D_64xid")
+
+[node name="Sam" type="AnimationPlayer" parent="Animation_Handler"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hdeby")
+}
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Hitbox_Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-130, -260)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_57c31")
+
+[node name="Enemy_Left_Detection" type="Area2D" parent="."]
+
+[node name="Left_Detection" type="CollisionShape2D" parent="Enemy_Left_Detection"]
+unique_name_in_owner = true
+position = Vector2(-6340, -345)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_fhy2t")
+
+[node name="Enemy_Right_Detection" type="Area2D" parent="."]
+
+[node name="Right_Detection" type="CollisionShape2D" parent="Enemy_Right_Detection"]
+unique_name_in_owner = true
+position = Vector2(6200, -260)
+shape = SubResource("RectangleShape2D_fhy2t")
+
+[node name="Enemy_Attack" type="Area2D" parent="."]
+
+[node name="Enemy_Detection_Attack" type="CollisionShape2D" parent="Enemy_Attack"]
+unique_name_in_owner = true
+position = Vector2(2.49985, -365)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_xtqkr")
+
+[node name="Repair_Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="Win_Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
+[connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]
+[connection signal="body_entered" from="Animation_Handler/Sword/Hit" to="." method="_on_hit_body_entered"]
+[connection signal="body_exited" from="Animation_Handler/Sword/Hit" to="." method="_on_hit_body_exited"]
+[connection signal="body_entered" from="Animation_Handler/Water/Water_Spot" to="." method="_on_water_spot_body_entered"]
+[connection signal="body_exited" from="Animation_Handler/Water/Water_Spot" to="." method="_on_water_spot_body_exited"]
+[connection signal="animation_finished" from="Animation_Handler/Sam" to="." method="_on_sam_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Enemy_Left_Detection" to="." method="_on_enemy_left_detection_body_entered"]
+[connection signal="body_exited" from="Enemy_Left_Detection" to="." method="_on_enemy_left_detection_body_exited"]
+[connection signal="body_entered" from="Enemy_Right_Detection" to="." method="_on_enemy_right_detection_body_entered"]
+[connection signal="body_exited" from="Enemy_Right_Detection" to="." method="_on_enemy_right_detection_body_exited"]
+[connection signal="body_entered" from="Enemy_Attack" to="." method="_on_enemy_attack_body_entered"]
+[connection signal="body_exited" from="Enemy_Attack" to="." method="_on_enemy_attack_body_exited"]
+[connection signal="timeout" from="Repair_Timer" to="." method="_on_repair_timer_timeout"]
+[connection signal="timeout" from="Win_Timer" to="." method="_on_win_timer_timeout"]

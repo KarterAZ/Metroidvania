@@ -5,9 +5,9 @@ const Global = preload("res://scripts/global.gd")
 @export var is_player: bool = true
 @export var is_final_boss: bool = false
 
-@export var min_speed: int = 200
-@export var max_speed: int = 1000
-@export var speed_per_second: int = 800
+@export var min_speed: int = 400
+@export var max_speed: int = 800
+@export var speed_per_second: int = 3000
 
 @export var min_gravity: int = 75
 @export var max_gravity: int = 875
@@ -77,8 +77,8 @@ var enemy_right: bool = false
 var attack_enemy: bool = false
 var attack_delay: int = 0
 
-@export var min_enemy_attack_delay: float = 20
-@export var max_enemy_attack_delay: float = 100
+@export var min_enemy_attack_delay: float = 40
+@export var max_enemy_attack_delay: float = 90
 
 @onready var left_detection: CollisionShape2D = %Left_Detection
 @onready var right_detection: CollisionShape2D = %Right_Detection
@@ -193,9 +193,9 @@ func attack_receive(damage_value: int) -> void:
 			sam.stop()
 			can_act = true
 	
-	#Knockback
-	set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - knockback)
-	move_and_slide()
+		#Knockback
+		set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - (knockback / 2))
+		move_and_slide()
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -410,14 +410,14 @@ func _physics_process(delta):
 	if velocityx < 0:
 		if horizontal_direction == 0:
 			velocityx += speed_per_second * delta
-			if velocityx < 0:
+			if velocityx > 0:
 				velocityx = 0
 	elif velocityx > 0:
 		if horizontal_direction == 0:
 			velocityx -= speed_per_second * delta
-			if velocityx > 0:
+			if velocityx < 0:
 				velocityx = 0
-			
+	
 	velocityx += horizontal_direction * speed
 	if (velocityx > max_speed) or velocityx < (max_speed * -1):
 		velocityx = horizontal_direction * max_speed
