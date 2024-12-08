@@ -376,14 +376,18 @@ func _physics_process(delta):
 		
 	#Weapon buff stuff
 	if (Input.is_action_just_pressed("Repair") and can_act and is_player) or (can_act and has_sword==0 and not is_player):
-		if (has_sword == Global.no_sword) and (ink.value >= sword_cost):
+		print("Hit repair")
+		
+		if (has_sword == Global.black_sword) and (health.value > sword_cost):
+			print("has black sword")
+			health.value -= sword_cost
+			has_sword = Global.red_sword
+		elif (has_sword == Global.no_sword) and (ink.value >= sword_cost):
+			print("Has no sword")
 			ink.value -= sword_cost
 			has_sword = Global.black_sword
 			can_act = false
 			repair_timer.start()
-		elif (has_sword == Global.black_sword) and (health.value > sword_cost):
-			health.value -= sword_cost
-			has_sword = Global.red_sword
 		
 	#Set animations
 	if horizontal_direction == 0 and can_act:
@@ -427,8 +431,9 @@ func _on_on_floor_body_entered(body: Node2D) -> void:
 func _on_on_floor_body_exited(_body: Node2D) -> void:
 	on_ground = false
 
-func _on_sam_animation_finished(_anim_name: StringName) -> void:
-	can_act = true
+func _on_sam_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Sword":
+		can_act = true
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
 	health.value -= 5
