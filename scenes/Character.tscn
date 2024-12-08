@@ -232,7 +232,7 @@ size = Vector2(1700, 3120)
 size = Vector2(11750, 2690)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtqkr"]
-size = Vector2(4875, 2770)
+size = Vector2(6360.01, 2770)
 
 [node name="Character" type="CharacterBody2D"]
 scale = Vector2(0.05, 0.05)
@@ -307,7 +307,6 @@ hframes = 4
 
 [node name="Sword" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("4_01n6b")
@@ -372,7 +371,7 @@ shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Enemy_Detection_Attack" type="CollisionShape2D" parent="Enemy_Attack"]
 unique_name_in_owner = true
-position = Vector2(2.49985, -365)
+position = Vector2(7.62939e-05, -365)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_xtqkr")
 
