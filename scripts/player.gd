@@ -199,6 +199,8 @@ func attack_receive(damage_value: int) -> void:
 		suffer_in_ice_physics = true
 		set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - (knockback / 2))
 		move_and_slide()
+		
+		reset_position()
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
