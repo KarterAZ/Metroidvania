@@ -21,7 +21,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var charge_stab_cost: int = 10
 @export var grav_cost: int = 0
-@export var water_cost: int = 20
+@export var water_cost: int = 5
 @export var sword_cost: int = 5
 
 @export var sword_damage: int = 10
@@ -116,6 +116,7 @@ func _ready():
 		enemy_detection_attack.set_deferred("disabled", true)
 	else:
 		cam.visible = false
+		max_speed += 400
 	
 func new_reset_position(heal, fill_ink, direction) -> void:
 	pain_position = self.get_global_position()

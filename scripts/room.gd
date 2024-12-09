@@ -35,13 +35,16 @@ func _on_character_water_blotch(wet_bodies: Array[Node2D]) -> void:
 			var y: int = floor(character.position.y/platforms.tile_set.tile_size.y)-2
 			var coords: Array[Vector2i] = []
 			for i in range(3):
-				for j in range(2):
+				for j in range(3):
 					coords.append(Vector2i(x+i-1, y+j-1)) #Gets square around player
 					
 			for coord in coords:
-				#print(platforms.tile_set.get_physics_layer_collision_layer(2))
-				#if collision on physics layer 2
-				platforms.erase_cell(coord)
+				var tile = platforms.get_cell_tile_data(coord)
+				print(tile)
+				if (tile != null) and (tile.probability == 2):
+					#if collision on physics layer 2
+					platforms.erase_cell(coord)
+				
 
 func _on_character_water_blotch_start() -> void:
 	water_effect.position = character.position
