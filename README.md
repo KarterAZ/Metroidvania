@@ -15,8 +15,8 @@ This section has licenses and such for outside resources used during production 
 
 ## Credits
 
-Art/Ideas: Karter Zwetschke (Neither of us are artists. Oof.)
+Art/Ideas: Karter Zwetschke (Neither of us are artists -> Oof)
 
-Basically everything else: Andrew Rice
+Basically everything else: Andrew Rice (I alone will atone for the sins of the bugs)
 
 Thanks for playing! :tada:

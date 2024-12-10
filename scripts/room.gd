@@ -28,27 +28,25 @@ func _on_change_grav_left_body_entered(body: Node2D) -> void:
 		body.change_grav(true)
 
 func _on_character_water_blotch(wet_bodies: Array[Node2D]) -> void:
-	print("emitted", wet_bodies)
-	for wet_body in wet_bodies:
-		if not wet_body.has_method("attack_receive"):
-			var x: int = floor(character.position.x/platforms.tile_set.tile_size.x)
-			var y: int = floor(character.position.y/platforms.tile_set.tile_size.y)-2
-			var coords: Array[Vector2i] = []
-			for i in range(3):
-				for j in range(2):
-					coords.append(Vector2i(x+i-1, y+j-1)) #Gets square around player
+	if len(wet_bodies) > 0:
+		var x: int = floor(character.position.x/platforms.tile_set.tile_size.x)
+		var y: int = floor(character.position.y/platforms.tile_set.tile_size.y)-2
+		var coords: Array[Vector2i] = []
+		for i in range(3):
+			for j in range(3):
+				coords.append(Vector2i(x+i-1, y+j-1)) #Gets square around player
 					
-			for coord in coords:
-				#print(platforms.tile_set.get_physics_layer_collision_layer(2))
-				#if collision on physics layer 2
+		for coord in coords:
+			var tile = platforms.get_cell_tile_data(coord)
+			if (tile != null) and (tile.probability == 2):
+				#if a deletable block, delete (manually set probability to 2 on deletable blocks lol)
 				platforms.erase_cell(coord)
-
+				
 
 func _on_character_water_blotch_start() -> void:
 	water_effect.position = character.position
 	water_effect.visible = true
 	water.play("new_animation")
-
 
 func _on_water_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "new_animation":

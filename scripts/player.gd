@@ -21,7 +21,7 @@ const Global = preload("res://scripts/global.gd")
 
 @export var charge_stab_cost: int = 10
 @export var grav_cost: int = 0
-@export var water_cost: int = 20
+@export var water_cost: int = 5
 @export var sword_cost: int = 5
 
 @export var sword_damage: int = 10
@@ -68,7 +68,6 @@ var suffer_in_ice_physics: bool = false
 @onready var water: Sprite2D = %Water
 @onready var hit: Area2D = %Hit
 @onready var repair_timer: Timer = %Repair_Timer
-@onready var get_away_box: CollisionShape2D = %Get_Away_Box
 
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
@@ -117,6 +116,7 @@ func _ready():
 		enemy_detection_attack.set_deferred("disabled", true)
 	else:
 		cam.visible = false
+		max_speed += 400
 	
 func new_reset_position(heal, fill_ink, direction) -> void:
 	pain_position = self.get_global_position()
@@ -182,9 +182,7 @@ func water_attack_give() -> void:
 func attack_give() -> void:
 	for hit_body in hit_bodies:
 		if hit_body.has_method("attack_receive"):
-			get_away_box.disabled = false
 			hit_body.attack_receive(sword_damage)
-			get_away_box.disabled = true
 			
 func attack_receive(damage_value: int) -> void:
 	if attacking == Global.good_attack:
@@ -200,14 +198,12 @@ func attack_receive(damage_value: int) -> void:
 			can_attack = true
 	
 		#Knockback
-		get_away_box.disabled = false
 		suffer_in_ice_physics = true
 		set_grav_velocity((get_grav_velocity_x() + knockback) * -1 * last_direction, get_grav_velocity_y() - (knockback / 2))
 		move_and_slide()
-		get_away_box.disabled = true
 		
-		#if(is_player):
-			#reset_position()
+		if(is_player):
+			reset_position()
 
 func set_grav_velocity(x, y) -> void:
 	if grav_direction == Global.down:
@@ -377,7 +373,7 @@ func _physics_process(delta):
 	speed += speed_per_second * delta
 	
 	#Attack stuff
-	if (Input.is_action_just_pressed("Attack") and can_attack and is_player) or (attack_enemy and can_attack and attack_delay<=0 and not is_player):
+	if (attack_enemy and can_attack and attack_delay<=0 and not is_player): #(Input.is_action_just_pressed("Attack") and can_attack and is_player) or 
 		if has_sword > 0:
 			hide_sprites()
 			sword.visible = true
