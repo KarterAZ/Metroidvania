@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bhxh3eucn3m8k"]
+[gd_scene load_steps=40 format=3 uid="uid://bhxh3eucn3m8k"]
 
 [ext_resource type="Texture2D" uid="uid://07arbgebbkgw" path="res://anim exports/cleanse/cleanse_1.png" id="1_l4u43"]
 [ext_resource type="Texture2D" uid="uid://ichr3j86iqrn" path="res://anim exports/cleanse/cleanse_2.png" id="2_m8s0b"]
@@ -20,9 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://2cey0gvnph5h" path="res://anim exports/jump atack/jump_atk_4.png" id="18_gxgm5"]
 [ext_resource type="Texture2D" uid="uid://mslpado02u7w" path="res://anim exports/jump atack/jump_atk_5.png" id="19_o3riq"]
 [ext_resource type="Texture2D" uid="uid://bel7fgdd3hw0b" path="res://anim exports/jump atack/jump_atk_6.png" id="20_ceuwt"]
+[ext_resource type="Texture2D" uid="uid://ppb53iwv1yy4" path="res://github_special/paint slash/swordless_ps_1.png" id="21_3ng0c"]
 [ext_resource type="Texture2D" uid="uid://bwljrc6knr354" path="res://anim exports/paint slash/paint_slash_1.png" id="21_adipr"]
 [ext_resource type="Texture2D" uid="uid://d24gst66mwmse" path="res://anim exports/paint slash/paint_slash_2.png" id="22_xe42q"]
+[ext_resource type="Texture2D" uid="uid://br6iu1rhtr8bp" path="res://github_special/paint slash/swordless_ps_2.png" id="22_xscky"]
 [ext_resource type="Texture2D" uid="uid://dgrnq32uycji2" path="res://anim exports/paint slash/paint_slash_3.png" id="23_24voo"]
+[ext_resource type="Texture2D" uid="uid://d1dk17iv348uo" path="res://github_special/paint slash/swordless_ps_3.png" id="23_ly7cb"]
 [ext_resource type="Texture2D" uid="uid://bkq7h8e0hdr07" path="res://anim exports/run/run_1.png" id="24_len7l"]
 [ext_resource type="Texture2D" uid="uid://cwejx68kg308d" path="res://anim exports/run/run_2.png" id="25_ax333"]
 [ext_resource type="Texture2D" uid="uid://cwthevldhy5tl" path="res://anim exports/run/run_3.png" id="26_oswi0"]
@@ -130,6 +133,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("21_3ng0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_xscky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ly7cb")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_adipr")
 }, {
 "duration": 1.0,
@@ -196,5 +213,6 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3btq")
-animation = &"paint_slash"
-frame_progress = 0.428401
+animation = &"new_animation"
+frame = 1
+frame_progress = 0.332668
