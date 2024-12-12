@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bhxh3eucn3m8k"]
+[gd_scene load_steps=42 format=3 uid="uid://bhxh3eucn3m8k"]
 
 [ext_resource type="Texture2D" uid="uid://07arbgebbkgw" path="res://anim exports/cleanse/cleanse_1.png" id="1_l4u43"]
 [ext_resource type="Texture2D" uid="uid://ichr3j86iqrn" path="res://anim exports/cleanse/cleanse_2.png" id="2_m8s0b"]
@@ -26,7 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://br6iu1rhtr8bp" path="res://github_special/paint slash/swordless_ps_2.png" id="22_xscky"]
 [ext_resource type="Texture2D" uid="uid://dgrnq32uycji2" path="res://anim exports/paint slash/paint_slash_3.png" id="23_24voo"]
 [ext_resource type="Texture2D" uid="uid://d1dk17iv348uo" path="res://github_special/paint slash/swordless_ps_3.png" id="23_ly7cb"]
+[ext_resource type="Texture2D" uid="uid://congyutqebqcn" path="res://anim exports/blood spray/blood_spray_1.png" id="24_3o1ew"]
 [ext_resource type="Texture2D" uid="uid://bkq7h8e0hdr07" path="res://anim exports/run/run_1.png" id="24_len7l"]
+[ext_resource type="Texture2D" uid="uid://b2h8p4bysskvo" path="res://anim exports/blood spray/blood_spray_2.png" id="25_10slr"]
 [ext_resource type="Texture2D" uid="uid://cwejx68kg308d" path="res://anim exports/run/run_2.png" id="25_ax333"]
 [ext_resource type="Texture2D" uid="uid://cwthevldhy5tl" path="res://anim exports/run/run_3.png" id="26_oswi0"]
 [ext_resource type="Texture2D" uid="uid://deo8jvxn7iljm" path="res://anim exports/run/run_4.png" id="27_g6tjj"]
@@ -142,7 +144,18 @@ animations = [{
 "texture": ExtResource("23_ly7cb")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"new paint slash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_3o1ew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_10slr")
+}],
+"loop": true,
+"name": &"new_animation_1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -213,6 +226,6 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3btq")
-animation = &"new_animation"
+animation = &"new_animation_1"
 frame = 1
-frame_progress = 0.332668
+frame_progress = 0.597801
