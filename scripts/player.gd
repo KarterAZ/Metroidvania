@@ -109,6 +109,8 @@ func _ready():
 	pain_position = self.get_global_position()
 	health.max_value = max_health
 	ink.max_value = max_ink
+	health.value = max_health
+	ink.value = max_ink
 	
 	if is_player:
 		left_detection.set_deferred("disabled", true)
@@ -128,6 +130,8 @@ func reset_position() -> void:
 	self.set_global_position(pain_position)
 	grav_direction = pain_direction
 	self.rotation_degrees = pain_direction * -90
+	can_act = true
+	sam.stop()
 
 func give_ink() -> void:
 	restore_ink = true
@@ -174,7 +178,6 @@ func no_collision_start() -> void:
 	
 func water_attack_give() -> void:
 	water_blotch.emit(wet_bodies)
-	print(wet_bodies)
 	for wet_body in wet_bodies:
 		if wet_body.has_method("attack_receive"):
 			wet_body.attack_receive(water_damage)

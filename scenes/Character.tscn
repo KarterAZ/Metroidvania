@@ -267,7 +267,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme_override_styles/background = SubResource("StyleBoxFlat_dto1k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_x6b0d")
-value = 95.0
+value = 100.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Ink" type="ProgressBar" parent="Player_Cam/HUD"]
@@ -278,7 +278,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_8rm1f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tee7l")
 max_value = 30.0
-value = 25.0
+value = 30.0
 
 [node name="On_Floor" type="Area2D" parent="."]
 position = Vector2(-8, 0)
