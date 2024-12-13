@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://de6gbuhaoqcgf"]
 
 [ext_resource type="Script" path="res://scripts/water_pickup.gd" id="1_xw0e1"]
-[ext_resource type="Texture2D" uid="uid://cwvegqms5gr6p" path="res://github_special/ground.png" id="2_oenpo"]
+[ext_resource type="Texture2D" uid="uid://dgvpl6ghnofnk" path="res://icons/water_icon.png" id="2_ilc4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohlfc"]
 size = Vector2(223, 224)
@@ -10,8 +10,9 @@ size = Vector2(223, 224)
 script = ExtResource("1_xw0e1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.219, 0.222)
-texture = ExtResource("2_oenpo")
+position = Vector2(3.8147e-06, -0.500004)
+scale = Vector2(1.12, 1.105)
+texture = ExtResource("2_ilc4m")
 
 [node name="Pickup_Area" type="Area2D" parent="."]
 

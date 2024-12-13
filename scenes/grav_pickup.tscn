@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl5p2g8eg7v1f"]
 
-[ext_resource type="Texture2D" uid="uid://cwvegqms5gr6p" path="res://github_special/ground.png" id="1_j80ck"]
 [ext_resource type="Script" path="res://scripts/grav_pickup.gd" id="1_mbtev"]
+[ext_resource type="Texture2D" uid="uid://dwv2us4h3ucly" path="res://icons/grav_icon.png" id="2_8hmjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quyb7"]
 size = Vector2(223, 224)
@@ -10,8 +10,9 @@ size = Vector2(223, 224)
 script = ExtResource("1_mbtev")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.219, 0.222)
-texture = ExtResource("1_j80ck")
+position = Vector2(1.99998, -0.499996)
+scale = Vector2(1.13, 1.095)
+texture = ExtResource("2_8hmjc")
 
 [node name="Pickup_Area" type="Area2D" parent="."]
 
