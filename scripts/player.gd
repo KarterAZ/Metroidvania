@@ -68,6 +68,11 @@ var suffer_in_ice_physics: bool = false
 @onready var water: Sprite2D = %Water
 @onready var hit: Area2D = %Hit
 @onready var repair_timer: Timer = %Repair_Timer
+@onready var enemy_idle: Sprite2D = %Enemy_Idle
+@onready var enemy_run: Sprite2D = %Enemy_Run
+@onready var jump: Sprite2D = %jump
+@onready var double_jump: Sprite2D = %double_jump
+@onready var paint_slash: Sprite2D = %paint_slash
 
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
@@ -248,9 +253,14 @@ func get_grav_velocity_y() -> float:
 		
 func hide_sprites() -> void:
 	idle.visible = false
+	enemy_idle.visible = false
 	run.visible = false
+	enemy_run.visible = false
 	sword.visible = false
 	water.visible = false
+	jump.visible = false
+	double_jump.visible = false
+	paint_slash.visible = false
 	
 func change_grav(change_left : bool) -> void:
 	ink.value -= grav_cost
@@ -363,14 +373,24 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Jump") and can_act and is_player:
 			cur_jumps += 1
 			velocityy = -jump_force
+			hide_sprites()
+			jump.visible = true
+			sam.play("Jump")
 	else:
 		if Input.is_action_just_pressed("Jump") and num_jumps > cur_jumps and can_act and is_player:
 			cur_jumps += 2
 			velocityy = -jump_force
 			gravity = min_gravity
+			hide_sprites()
+			double_jump.visible = true
+			sam.play("Double_jump")
 		else:
 			gravity += gravity_per_second * delta
 			velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
+			if sam.get_current_animation() != "Double_jump":
+				hide_sprites()
+				jump.visible = true
+				sam.play("Jump")
 		
 	#Set speed
 	speed += speed_per_second * delta
@@ -404,14 +424,22 @@ func _physics_process(delta):
 			repair_timer.start()
 		
 	#Set animations
-	if horizontal_direction == 0 and can_act and can_attack:
+	if horizontal_direction == 0 and can_act and can_attack and on_ground:
 		hide_sprites()
-		idle.visible = true
-		sam.play("Idle")
-	elif horizontal_direction != 0 and can_act and can_attack:
+		if is_player:
+			idle.visible = true
+			sam.play("Idle")
+		else:
+			enemy_idle.visible = true
+			sam.play("Enemy_idle")
+	elif horizontal_direction != 0 and can_act and can_attack and on_ground:
 		hide_sprites()
-		run.visible = true
-		sam.play("Run")
+		if is_player:
+			run.visible = true
+			sam.play("Run")
+		else:
+			enemy_run.visible = true
+			sam.play("Enemy_run")
 				
 	#If changed directions
 	if can_act and can_attack and ((horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0)):

@@ -1,10 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://du116u42p16b"]
+[gd_scene load_steps=33 format=3 uid="uid://du116u42p16b"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
+[ext_resource type="Texture2D" uid="uid://c43ir8640lrm3" path="res://anim exports/all sprite sheets/idle_sheet.png" id="3_pweos"]
 [ext_resource type="Texture2D" uid="uid://dt2wfet2y2edc" path="res://anim exports/all sprite sheets/idle_atk_sheet.png" id="4_01n6b"]
+[ext_resource type="Texture2D" uid="uid://rk6hcr5tn4qo" path="res://swordless/sl_run.png" id="4_gya6c"]
+[ext_resource type="Texture2D" uid="uid://bfd8b310fwoei" path="res://swordless/sl_jump.png" id="4_krfm1"]
+[ext_resource type="Texture2D" uid="uid://c0ddcyqynvbjk" path="res://anim exports/all sprite sheets/run_sheet.png" id="5_52xta"]
+[ext_resource type="Texture2D" uid="uid://cpeweypeyfknc" path="res://swordless/sl_double_jump.png" id="5_y8bit"]
+[ext_resource type="Texture2D" uid="uid://duakhkayp8vin" path="res://swordless/sl_paint_slash.png" id="6_gltrs"]
 [ext_resource type="Texture2D" uid="uid://du1ubrx3y3ugm" path="res://anim exports/all sprite sheets/cleanse_sheet.png" id="6_xuk5q"]
 [ext_resource type="Texture2D" uid="uid://b0ftwfi3333cc" path="res://sam/sam_idle.png" id="7_ahlrx"]
-[ext_resource type="Texture2D" uid="uid://dtwerof0vryec" path="res://sam/sam_run.png" id="8_fy0ea"]
 [ext_resource type="Script" path="res://scripts/collision.gd" id="11_23mv5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1avx"]
@@ -79,7 +84,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Run:frame")
+tracks/1/path = NodePath("%Sword:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -91,7 +96,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%Sword:frame")
+tracks/2/path = NodePath("%Water:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -103,7 +108,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%Water:frame")
+tracks/3/path = NodePath("%Enemy_Idle:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -112,12 +117,60 @@ tracks/3/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Run:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Enemy_Run:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%jump:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%double_jump:frame_coords")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_wgksv"]
 resource_name = "Run"
-length = 0.8
+length = 0.9
 loop_mode = 1
-step = 0.1
+step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -125,10 +178,10 @@ tracks/0/path = NodePath("%Run:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_yeqpj"]
@@ -216,9 +269,83 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_6fqod"]
+resource_name = "Enemy_idle"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Enemy_Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_gdrw1"]
+resource_name = "Enemy_run"
+length = 0.9
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Enemy_Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_kgr7d"]
+resource_name = "Jump"
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%jump:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4x4dq"]
+resource_name = "Double_jump"
+length = 0.45
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%double_jump:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hdeby"]
 _data = {
+"Double_jump": SubResource("Animation_4x4dq"),
+"Enemy_idle": SubResource("Animation_6fqod"),
+"Enemy_run": SubResource("Animation_gdrw1"),
 "Idle": SubResource("Animation_fsis2"),
+"Jump": SubResource("Animation_kgr7d"),
 "RESET": SubResource("Animation_iveiw"),
 "Run": SubResource("Animation_wgksv"),
 "Sword": SubResource("Animation_yeqpj"),
@@ -292,21 +419,61 @@ unique_name_in_owner = true
 
 [node name="Idle" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("7_ahlrx")
 hframes = 2
+
+[node name="Enemy_Idle" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("3_pweos")
+hframes = 2
+
+[node name="jump" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("4_krfm1")
+
+[node name="double_jump" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("5_y8bit")
+hframes = 3
+
+[node name="paint_slash" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("6_gltrs")
+hframes = 3
 
 [node name="Run" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
 visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
-texture = ExtResource("8_fy0ea")
-hframes = 4
+texture = ExtResource("4_gya6c")
+hframes = 6
+
+[node name="Enemy_Run" type="Sprite2D" parent="Animation_Handler"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(40, -460)
+scale = Vector2(4, 4)
+texture = ExtResource("5_52xta")
+hframes = 6
 
 [node name="Sword" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("4_01n6b")
