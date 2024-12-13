@@ -845,7 +845,6 @@ max_ink = 50
 
 [node name="Top_Ruins_Start_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(5170, 2650)
-restore_red_ink = true
 
 [node name="Ruins_Start_Inkwell2" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(6033, 4740)
@@ -857,11 +856,10 @@ position = Vector2(22054, 8196)
 position = Vector2(20858, 5647)
 
 [node name="Before_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(35833, 5006)
+position = Vector2(35833, 5043)
 
 [node name="Blocker_Guy_Inkwell2" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(31309, 3821)
-restore_red_ink = true
+position = Vector2(31716, 3387)
 
 [node name="Before_Grav_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(19606, -830)
@@ -869,7 +867,6 @@ direction = 3
 
 [node name="Grav_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(10638, 1888)
-restore_red_ink = true
 
 [node name="Top_Ruins_Secret_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(5599, -1310)
@@ -881,11 +878,9 @@ position = Vector2(8234, 3396)
 
 [node name="Final_Boss_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(10976, 2354)
-restore_red_ink = true
 
 [node name="End_Death_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(23969, 2488)
-restore_red_ink = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -977,6 +972,9 @@ libraries = {
 visible = false
 texture = ExtResource("15_55yqa")
 hframes = 7
+
+[node name="Mid_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
+position = Vector2(32489, 3827)
 
 [connection signal="charge_stab" from="Character" to="." method="_on_character_charge_stab"]
 [connection signal="dead" from="Character" to="." method="_on_character_dead"]

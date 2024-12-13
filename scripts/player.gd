@@ -157,11 +157,11 @@ func grav_get() -> void:
 	
 func health_up_get() -> void:
 	health.max_value += 10
-	health.value = health.max_value
+	health.value += 10
 	
 func ink_up_get() -> void:
 	ink.max_value += 10
-	ink.value = ink.max_value
+	ink.value += 10
 	
 func bad_collision_start() -> void:
 	attacking = Global.bad_attack
