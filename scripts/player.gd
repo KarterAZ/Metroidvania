@@ -136,7 +136,9 @@ func reset_position() -> void:
 	grav_direction = pain_direction
 	self.rotation_degrees = pain_direction * -90
 	can_act = true
-	sam.stop()
+	can_attack = true
+	if sam.is_playing():
+		sam.stop()
 
 func give_ink() -> void:
 	restore_ink = true
@@ -201,9 +203,6 @@ func attack_receive(damage_value: int) -> void:
 			if has_sword != Global.no_sword:
 				has_sword -= 1
 		health.value -= damage_value
-		if sam.is_playing():
-			sam.stop()
-			can_attack = true
 	
 		#Knockback
 		suffer_in_ice_physics = true

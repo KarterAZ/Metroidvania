@@ -356,7 +356,7 @@ _data = {
 size = Vector2(1700, 3120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhy2t"]
-size = Vector2(13175, 4780)
+size = Vector2(18707.5, 5742.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtqkr"]
 size = Vector2(6360.01, 2960)
@@ -523,7 +523,7 @@ shape = SubResource("RectangleShape2D_57c31")
 
 [node name="Left_Detection" type="CollisionShape2D" parent="Enemy_Left_Detection"]
 unique_name_in_owner = true
-position = Vector2(-6652.5, -1420)
+position = Vector2(-9360, -1660)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_fhy2t")
 
@@ -531,7 +531,8 @@ shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Right_Detection" type="CollisionShape2D" parent="Enemy_Right_Detection"]
 unique_name_in_owner = true
-position = Vector2(6600, -1420)
+position = Vector2(9366.25, -1660)
+scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Enemy_Attack" type="Area2D" parent="."]
