@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://du116u42p16b"]
+[gd_scene load_steps=35 format=4 uid="uid://du116u42p16b"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q2b7k"]
 [ext_resource type="Texture2D" uid="uid://c43ir8640lrm3" path="res://anim exports/all sprite sheets/idle_sheet.png" id="3_pweos"]
@@ -465,6 +465,7 @@ unique_name_in_owner = true
 
 [node name="Idle" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("7_ahlrx")
