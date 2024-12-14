@@ -455,7 +455,6 @@ value = 30.0
 
 [node name="On_Floor" type="Area2D" parent="."]
 position = Vector2(-8, 0)
-audio_bus_name = &""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="On_Floor"]
 position = Vector2(-136, 1010)
@@ -527,7 +526,6 @@ hframes = 6
 
 [node name="Hit" type="Area2D" parent="Animation_Handler/Sword"]
 unique_name_in_owner = true
-audio_bus_name = &""
 
 [node name="Hit_Collision" type="CollisionShape2D" parent="Animation_Handler/Sword/Hit"]
 position = Vector2(272.5, 15)
@@ -546,7 +544,6 @@ hframes = 2
 [node name="Water_Spot" type="Area2D" parent="Animation_Handler/Water"]
 collision_layer = 4
 collision_mask = 4
-audio_bus_name = &""
 
 [node name="Water_Hitbox" type="CollisionShape2D" parent="Animation_Handler/Water/Water_Spot"]
 position = Vector2(-30, 20)
@@ -561,7 +558,6 @@ libraries = {
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-audio_bus_name = &""
 
 [node name="Hitbox_Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-130, -260)
@@ -569,7 +565,6 @@ scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_57c31")
 
 [node name="Enemy_Left_Detection" type="Area2D" parent="."]
-audio_bus_name = &""
 
 [node name="Left_Detection" type="CollisionShape2D" parent="Enemy_Left_Detection"]
 unique_name_in_owner = true
@@ -578,7 +573,6 @@ scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Enemy_Right_Detection" type="Area2D" parent="."]
-audio_bus_name = &""
 
 [node name="Right_Detection" type="CollisionShape2D" parent="Enemy_Right_Detection"]
 unique_name_in_owner = true
@@ -587,7 +581,6 @@ scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_fhy2t")
 
 [node name="Enemy_Attack" type="Area2D" parent="."]
-audio_bus_name = &""
 
 [node name="Enemy_Detection_Attack" type="CollisionShape2D" parent="Enemy_Attack"]
 unique_name_in_owner = true
