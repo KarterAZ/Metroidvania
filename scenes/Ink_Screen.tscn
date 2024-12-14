@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b10v4siijr7gb"]
+
+[ext_resource type="Theme" uid="uid://bsw0hesjvm384" path="res://fonts/Main_Theme.tres" id="1_ntnrm"]
+[ext_resource type="Script" path="res://scripts/ability_screen.gd" id="1_rmrcm"]
+[ext_resource type="Texture2D" uid="uid://dxfr8b7nmb1h6" path="res://icons/ink_demo.png" id="1_srjo8"]
+
+[node name="InkScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rmrcm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Ability_Description" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_ntnrm")
+text = "Press LMB to Ink below you."
+
+[node name="Ink_Sprite" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_srjo8")
+
+[node name="Resume_Game" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_ntnrm")
+text = "Resume"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume_Game" to="." method="_on_resume_game_pressed"]
