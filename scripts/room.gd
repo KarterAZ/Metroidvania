@@ -4,6 +4,9 @@ const CHARGE_STAB = preload("res://scenes/Charge_Stab.tscn")
 
 @onready var character: CharacterBody2D = %Character
 @onready var game_over: Control = %GameOver
+@onready var ink_screen: Control = %InkScreen
+@onready var water_screen: Control = %WaterScreen
+@onready var grav_screen: Control = %GravScreen
 @onready var platforms: TileMapLayer = %Platforms
 @onready var water: AnimationPlayer = %water
 @onready var water_effect: Sprite2D = $water/water_effect
@@ -51,3 +54,12 @@ func _on_character_water_blotch_start() -> void:
 func _on_water_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "new_animation":
 		water_effect.visible = false
+
+func _on_ink_pickup_ink_screen() -> void:
+	ink_screen.pause()
+
+func _on_water_pickup_water_screen() -> void:
+	water_screen.pause()
+
+func _on_grav_pickup_grav_screen() -> void:
+	grav_screen.pause()
