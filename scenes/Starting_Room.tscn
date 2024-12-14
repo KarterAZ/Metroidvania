@@ -849,7 +849,7 @@ is_player = false
 max_health = 50
 
 [node name="Ink_Enemy1" parent="." instance=ExtResource("2_w8a45")]
-position = Vector2(11785, 6529)
+position = Vector2(11974, 6529)
 is_player = false
 max_health = 50
 
@@ -936,6 +936,9 @@ position = Vector2(20858, 5647)
 [node name="Before_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(35833, 5043)
 
+[node name="Mid_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
+position = Vector2(32309, 3827)
+
 [node name="Before_Grav_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
 position = Vector2(19873, -820)
 direction = 3
@@ -1017,7 +1020,7 @@ position = Vector2(8767, -914)
 shape = SubResource("RectangleShape2D_c6kyf")
 
 [node name="InkUpPickup" parent="." instance=ExtResource("13_hgpai")]
-position = Vector2(-1464, 474)
+position = Vector2(-1403, 467)
 
 [node name="InkUpPickup2" parent="." instance=ExtResource("13_hgpai")]
 position = Vector2(14796, -6123)
@@ -1053,9 +1056,6 @@ libraries = {
 visible = false
 texture = ExtResource("15_55yqa")
 hframes = 7
-
-[node name="Mid_Gauntlet_Inkwell" parent="." instance=ExtResource("4_kcpbn")]
-position = Vector2(32309, 3827)
 
 [connection signal="charge_stab" from="Character" to="." method="_on_character_charge_stab"]
 [connection signal="dead" from="Character" to="." method="_on_character_dead"]
