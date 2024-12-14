@@ -386,7 +386,7 @@ func _physics_process(delta):
 		else:
 			gravity += gravity_per_second * delta
 			velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
-			if sam.get_current_animation() != "Double_jump":
+			if (sam.get_current_animation() != "Double_jump") and (sam.get_current_animation() != "Ink") and (sam.get_current_animation() != "Water"):
 				hide_sprites()
 				jump.visible = true
 				sam.play("Jump")
@@ -478,6 +478,7 @@ func _on_sam_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Sword":
 		can_attack = true
 	elif anim_name == "Water":
+		print("end")
 		can_act = true
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:

@@ -419,7 +419,6 @@ unique_name_in_owner = true
 
 [node name="Idle" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
-visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("7_ahlrx")
@@ -442,6 +441,7 @@ texture = ExtResource("4_krfm1")
 
 [node name="double_jump" type="Sprite2D" parent="Animation_Handler"]
 unique_name_in_owner = true
+visible = false
 position = Vector2(40, -460)
 scale = Vector2(4, 4)
 texture = ExtResource("5_y8bit")
