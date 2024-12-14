@@ -74,6 +74,7 @@ var suffer_in_ice_physics: bool = false
 @onready var double_jump: Sprite2D = %double_jump
 @onready var paint_slash: Sprite2D = %paint_slash
 
+@onready var walk_sound: AudioStreamPlayer2D = %Walk_Sound
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
 @onready var ink: ProgressBar = %Ink
@@ -428,6 +429,7 @@ func _physics_process(delta):
 		
 	#Set animations
 	if horizontal_direction == 0 and can_act and can_attack and on_ground:
+		walk_sound.stop()
 		hide_sprites()
 		if is_player:
 			idle.visible = true
@@ -440,9 +442,13 @@ func _physics_process(delta):
 		if is_player:
 			run.visible = true
 			sam.play("Run")
+			if not walk_sound.playing:
+				walk_sound.play()
 		else:
 			enemy_run.visible = true
 			sam.play("Enemy_run")
+	else:
+		walk_sound.stop()
 				
 	#If changed directions
 	if can_act and can_attack and ((horizontal_direction < 0 and sprites.scale.x > 0) or (horizontal_direction > 0 and sprites.scale.x < 0)):
