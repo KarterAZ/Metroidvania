@@ -841,7 +841,7 @@ tile_set = SubResource("TileSet_8vlxc")
 
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
 unique_name_in_owner = true
-position = Vector2(81, 1863)
+position = Vector2(22478, 8129)
 
 [node name="Starting_Enemy" parent="." instance=ExtResource("2_w8a45")]
 position = Vector2(1359, 1864)

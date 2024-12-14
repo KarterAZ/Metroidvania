@@ -325,6 +325,7 @@ func _physics_process(delta):
 	#Ink stuff
 	if Input.is_action_just_pressed("Ink") and can_act and can_ink and is_player:
 		if ink.value >= charge_stab_cost:
+			can_act = false
 			hide_sprites()
 			paint_slash.visible = true
 			sam.play("paint_slash")
@@ -389,7 +390,7 @@ func _physics_process(delta):
 		else:
 			gravity += gravity_per_second * delta
 			velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
-			if (sam.get_current_animation() != "Double_jump") or (sam.get_current_animation() != "paint_slash") or (sam.get_current_animation() != "Water"):
+			if not ((sam.get_current_animation() == "Double_jump") or (sam.get_current_animation() == "paint_slash") or (sam.get_current_animation() == "Water")):
 				hide_sprites()
 				jump.visible = true
 				sam.play("Jump")
@@ -481,7 +482,8 @@ func _on_sam_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Sword":
 		can_attack = true
 	elif anim_name == "Water":
-		print("end")
+		can_act = true
+	elif anim_name == "paint_slash":
 		can_act = true
 
 func _on_hitbox_body_entered(_body: Node2D) -> void:
