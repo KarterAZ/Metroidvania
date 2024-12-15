@@ -294,6 +294,7 @@ func _physics_process(delta):
 		if is_player:
 			dead.emit()
 		elif is_final_boss:
+			health.value = 1
 			win_timer.start()
 			self.visible = false
 			enemy_left = false
@@ -422,14 +423,10 @@ func _physics_process(delta):
 		
 	#Weapon buff stuff
 	if (Input.is_action_just_pressed("Repair") and can_act and is_player) or (can_act and has_sword==0 and not is_player):
-		print("Hit repair -> ", has_sword)
-		
 		if (has_sword == Global.black_sword) and (health.value > sword_cost):
-			print("has black sword")
 			health.value -= sword_cost
 			has_sword = Global.red_sword
 		elif (has_sword == Global.no_sword) and (ink.value >= sword_cost):
-			print("Has no sword")
 			ink.value -= sword_cost
 			has_sword = Global.black_sword
 			can_act = false

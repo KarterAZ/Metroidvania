@@ -11,10 +11,6 @@ const CHARGE_STAB = preload("res://scenes/Charge_Stab.tscn")
 @onready var water: AnimationPlayer = %water
 @onready var water_effect: Sprite2D = $water/water_effect
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-	
 func _on_character_charge_stab() -> void:
 	var ink = CHARGE_STAB.instantiate()
 	ink.position.x = character.position.x

@@ -851,7 +851,7 @@ tile_set = SubResource("TileSet_8vlxc")
 
 [node name="Character" parent="." instance=ExtResource("2_w8a45")]
 unique_name_in_owner = true
-position = Vector2(79, 1868)
+position = Vector2(94, 1867)
 
 [node name="Starting_Enemy" parent="." instance=ExtResource("2_w8a45")]
 position = Vector2(1359, 1864)
@@ -1085,6 +1085,7 @@ hframes = 7
 [connection signal="dead" from="Character" to="." method="_on_character_dead"]
 [connection signal="water_blotch" from="Character" to="." method="_on_character_water_blotch"]
 [connection signal="water_blotch_start" from="Character" to="." method="_on_character_water_blotch_start"]
+[connection signal="dead" from="Final_Boss" to="." method="_on_character_dead"]
 [connection signal="ink_screen" from="InkPickup" to="." method="_on_ink_pickup_ink_screen"]
 [connection signal="water_screen" from="WaterPickup" to="." method="_on_water_pickup_water_screen"]
 [connection signal="grav_screen" from="GravPickup" to="." method="_on_grav_pickup_grav_screen"]
