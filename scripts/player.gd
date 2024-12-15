@@ -391,7 +391,7 @@ func _physics_process(delta):
 		else:
 			gravity += gravity_per_second * delta
 			velocityy = velocityy + gravity if gravity < max_gravity else max_gravity
-			if not ((sam.get_current_animation() == "Double_jump") or (sam.get_current_animation() == "paint_slash") or (sam.get_current_animation() == "Water")):
+			if not ((sam.get_current_animation() == "Double_jump") or (sam.get_current_animation() == "paint_slash") or (sam.get_current_animation() == "Water")) and is_player:
 				hide_sprites()
 				jump.visible = true
 				sam.play("Jump")
