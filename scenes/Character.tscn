@@ -596,7 +596,6 @@ autoplay = true
 unique_name_in_owner = true
 stream = ExtResource("14_0yiam")
 volume_db = 13.0
-autoplay = true
 
 [connection signal="body_entered" from="On_Floor" to="." method="_on_on_floor_body_entered"]
 [connection signal="body_exited" from="On_Floor" to="." method="_on_on_floor_body_exited"]

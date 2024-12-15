@@ -102,6 +102,8 @@ signal gravity_left
 signal gravity_right
 
 func _ready():
+	speech.play()
+	
 	speed = min_speed
 	gravity = max_speed
 	cur_jumps = 0
