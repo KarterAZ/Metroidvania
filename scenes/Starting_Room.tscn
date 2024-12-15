@@ -934,6 +934,7 @@ max_health = 50
 position = Vector2(24578, 2924)
 is_player = false
 is_final_boss = true
+sword_damage = 25
 max_health = 150
 max_ink = 50
 
