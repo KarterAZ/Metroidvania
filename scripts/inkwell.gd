@@ -6,8 +6,11 @@ const INKWELL = preload("res://items/inkwell.png")
 
 @onready var sprite: Sprite2D = %Sprite
 
+@export var sound_byte: AudioStreamMP3 = null
 @export var restore_red_ink: bool = false
 @export var direction: int = Global.down
+
+var first: bool = true
 
 func _ready() -> void:
 	if restore_red_ink == true:
@@ -17,4 +20,5 @@ func _ready() -> void:
 
 func _on_restore_area_body_entered(body: Node2D) -> void:
 	if body.has_method("inkwell"):
-		body.inkwell(restore_red_ink, direction)
+		body.inkwell(restore_red_ink, direction, first, sound_byte)
+		first = false

@@ -75,6 +75,7 @@ var suffer_in_ice_physics: bool = false
 @onready var paint_slash: Sprite2D = %paint_slash
 
 @onready var walk_sound: AudioStreamPlayer2D = %Walk_Sound
+@onready var speech: AudioStreamPlayer2D = %Speech
 @onready var cam: Camera2D = %Player_Cam
 @onready var health: ProgressBar = %Health
 @onready var ink: ProgressBar = %Ink
@@ -147,25 +148,32 @@ func give_ink() -> void:
 func give_health() -> void:
 	restore_health = true
 	
-func inkwell(restore_red_ink, direction) -> void:
+func inkwell(restore_red_ink:bool, direction:int, play_sound:bool, sound_byte:AudioStreamMP3) -> void:
 	give_ink()
 	if restore_red_ink:
 		give_health()
 		new_reset_position(true, true, direction)
 	else:
 		new_reset_position(false, true, direction)
+		
+	if play_sound and sound_byte != null:
+		speech.stream = sound_byte
+		speech.play()
 
 func ink_get() -> void:
 	can_ink = true
-	#TODO: play audio, maybe text for controls?
+	speech.stream = preload("res://music/sound5ink.mp3")
+	speech.play()
 	
 func water_get() -> void:
 	can_water = true
-	#TODO: play audio, maybe text for controls?
+	speech.stream = preload("res://music/sound8water.mp3")
+	speech.play()
 	
 func grav_get() -> void:
 	can_grav = true
-	#TODO: play audio, maybe text for controls?
+	speech.stream = preload("res://music/sound999grav.mp3")
+	speech.play()
 	
 func health_up_get() -> void:
 	health.max_value += 10
